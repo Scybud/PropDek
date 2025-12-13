@@ -128,7 +128,7 @@
       }
       //delet property card
       function deleteProperty(index) {
-        if (confirm("Are you sure?")) {
+        if (confirm("Are you sure you want to delete?")) {
           getproperty.splice(index, 1);
           localStorage.setItem("properties", JSON.stringify(getproperty));
           renderCards();

@@ -59,7 +59,7 @@ img {
 #getstartedBtn {
   background: radial-gradient(circle at center, yellow, orange);
   color: black;
-  width: 300px;
+  max-width: 300px;
   font-size: 20px;
   height: 60px;
   padding: 10px;
