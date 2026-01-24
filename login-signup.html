@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="form.css" />
   </head>
+  <header>
+    <nav style="display: inline-flex">
+      <div class="menu-icon" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h1>EstateHub</h1>
+    </nav>
+    <aside id="sidebar">
+      <div id="nav-bar">
+        <p style="text-align: center; color: white">Navigate</p>
+      </div>
+    </aside>
+  </header>
   <body>
-    <header>
-      <nav style="display: inline-flex">
-        <div class="menu-icon" onclick="toggleSidebar()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <h1>EstateHub</h1>
-      </nav>
-      <aside id="sidebar">
-        <div id="nav-bar">
-          <p style="text-align: center; color: white">Navigate</p>
-        </div>
-      </aside>
-    </header>
+    <div class="dot-container">
+    </div>
     <main>
       <!--SIGNUP FORM-->
       <form id="signupForm">

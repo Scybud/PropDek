@@ -22,6 +22,8 @@
 </head>
 
 <body>
+  <div class="dot-container">
+    </div>
   <!-- NAVBAR -->
   <nav>
     <div class="menu-icon" onclick="toggleSidebar()">
@@ -50,6 +52,7 @@
         <input type="text" id="owner" placeholder="Owner's name" required />
         <input type="text" id="status" placeholder="Rented, Leased, For Sale" required />
         <input type="text" id="rent" placeholder="Amount e.g. 250000 or 100k" required />
+        <label for="expiry">Lease Expiry Date:</label>
         <input type="date" id="expiry" placeholder="Lease expiry date" required />
         <input type="text" id="tenants" placeholder="Tenant name(s)" />
         <textarea id="description" placeholder="Property description"></textarea>
@@ -79,8 +82,8 @@
       const expiry = document.getElementById("expiry").value.trim();
       const tenants = document.getElementById("tenants").value.trim();
       const description = document.getElementById("description").value.trim();
-
-      const newProperty = { type, owner, status, rent, leaseExpiry: expiry, tenants, description };
+const propertyId = crypto.randomUUID();
+      const newProperty = { type, owner, status, rent, expiry, tenants, description, propertyId };
       getproperty.push(newProperty);
       localStorage.setItem("properties", JSON.stringify(getproperty));
 

@@ -102,7 +102,7 @@ aside.hide {
   margin: 8px auto;
   padding: 14px;
   background: #2a2a2a;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
@@ -117,9 +117,7 @@ aside.hide {
 
 .anchor-nav-bar.active {
   background-color: #00bcd4;
-  border-left: 10px solid orange;
   color: #000;
-  border-radius: 4px;
   font-weight: 700;
 }
 
@@ -178,7 +176,7 @@ aside.hide {
   gap: 14px;
 }
 
-#detailsCard > div {
+#detailsCard div {
   background: #202020;
   border-radius: 14px;
   padding: 14px;
@@ -196,9 +194,12 @@ aside.hide {
   text-align: left;
   border-bottom: 1px solid #444;
   background: #000000;
-  border-radius: 20px;
+  border-radius: 10px;
+  margin: 10px auto 14px;
 }
-
+#detailsCard div p {
+  margin: 18px;
+}
 #detailsCard button {
   margin-top: 8px;
   margin-right: 8px;
@@ -231,7 +232,7 @@ footer {
 /* ================================
    RESPONSIVE
 ================================ */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .menu-icon {
     display: block;
   }
