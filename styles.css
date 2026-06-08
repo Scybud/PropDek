@@ -1,99 +1,369 @@
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(80deg, orangered, skyblue, orange);
-  font-size: larger;
-  background-size: 200% 200%;
-  animation: gradientMove 6s ease-in-out infinite;
-  margin: 5px;
-  transition: margin 1s ease;
+/* ==========================================================================
+   CSS CUSTOM VARIABLES
+   ========================================================================== */
+:root {
+  --bg-accent: #464748;        /* Hover borders/elements */
+  
+  --primary: #ffa500;    /* Vivid Brand Orange */
+  --primary-hover: #d68b00;    /* Lightened brand orange */
+  --secondary-color: #e2e8f0;  /* Clean white button action */
+  
+  /* Layout & Spacing */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --max-width: 1100px;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 25% 50%;
-  }
-  50% {
-    background-position: 50% 50%;
-  }
-  75% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* ==========================================================================
+   BASE RESET & STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.welcome-text {
-  color: black;
-  text-align: center;
-  padding: 20px;
-  margin: 200px 5px;
+
+html {
+  scroll-behavior: smooth;
 }
-img {
-  width: 100px;
-  height: 100px;
-  display: block;
-  margin: 20px auto;
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Common Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.grid {
+  display: grid;
+  gap: 32px;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  z-index: 1;
+  top: var(--space-lg);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  max-width: var(--max-width);
+  margin: var(--space-xl) auto;
+  padding: var(--space-sm) var(--space-lg);
+  backdrop-filter: var(--filter) brightness(40%);
+  border: 1px solid var(--bg-accent);
+  border-radius: var(--radius-lg);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.logo-accent {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   BUTTONS SYSTEM
+   ========================================================================== */
+.btn {
+  display: inline-flex;
   justify-content: center;
-  border-radius: 30px;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
 }
-@keyframes pulse {
-  0% {
-    transform: scale(1.05);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1.05);
-  }
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #000;
+  border: none;
 }
-@media (max-width: 800px) {
-  #getstartedBtn {
-    width: 70vw;
-  }
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px #ffc40033;
 }
+
+.btn-secondary {
+  background-color: var(--bg-accent);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+  background-color: var(--text-muted);
+  color: var(--bg-primary);
+}
+
+/* Hero Pulsing Accent Action */
 #getstartedBtn {
-  background: radial-gradient(circle at center, yellow, orange);
-  color: black;
-  max-width: 300px;
-  font-size: 20px;
-  height: 60px;
-  padding: 10px;
-  border: 2px solid #ff5c00;
-  border-radius: 5px;
-  margin: 10px auto;
+  animation: subtlePulse 3s infinite ease-in-out;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-section {
+  padding: 120px 0 80px 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 40px auto;
+}
+
+/* ==========================================================================
+   FEATURES SECTION
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+}
+
+.section-header h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-header p {
+  color: var(--text-muted);
+}
+
+.cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--bg-accent);
+  padding: 40px 32px;
+  border-radius: var(--radius-md);
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 92, 0, 0.4);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   SPLIT LAYOUT / ANALYTICS
+   ========================================================================== */
+.split-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  animation: pulse 3s ease-in-out infinite;
+  gap: 64px;
 }
-#getstartedBtn:hover {
-  background-color: #ff5c00;
-  width: 310px;
-  height: 65px;
-  font-size: larger;
-  color: rgb(54, 54, 54);
-  transform: scale(1.2);
-  transition: all 0.3s ease-in-out;
-  animation: none;
+
+.split-text, .split-visual {
+  flex: 1;
 }
-h1 {
+
+.split-text h2 {
+  font-size: 2.25rem;
+  margin-bottom: 20px;
+}
+
+.split-text p {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.benefit-list {
+  list-style: none;
+}
+
+.benefit-list li {
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Simple Mockup Component Representing Dashboard Graphic */
+.mock-dashboard {
+  background: #111827;
+  border: 1px solid var(--bg-accent);
+  height: 300px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
   display: flex;
-  margin: 0 30px;
+  flex-direction: column;
+  overflow: hidden;
 }
-p {
-  margin: 0 0 40px 0;
-}
-header {
+
+.mock-header {
+  background: var(--bg-secondary);
+  height: 30px;
   display: flex;
-  gap: 2rem;
-  background: linear-gradient(90deg, orange, yellow, orangered);
-  padding: 1rem 0;
-  border-radius: 30px;
-  margin: 3px;
-  height: 25px;
+  align-items: center;
+  gap: 6px;
+  padding-left: 16px;
+}
+
+.mock-header span {
+  width: 8px;
+  height: 8px;
+  background: var(--bg-accent);
+  border-radius: 50%;
+}
+
+.mock-body {
+  display: flex;
+  flex: 1;
+}
+
+.mock-sidebar {
+  width: 60px;
+  background: var(--bg-secondary);
+  opacity: 0.5;
+  border-right: 1px solid var(--bg-accent);
+}
+
+.mock-content {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.mock-widget {
+  flex: 1;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--bg-accent);
+}
+
+/* ==========================================================================
+   CALL TO ACTION & FOOTER
+   ========================================================================== */
+.cta-section {
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+}
+
+.cta-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.cta-container p {
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--bg-accent);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .split-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .benefit-list {
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+    border-radius: var(--radius-md);
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
 }

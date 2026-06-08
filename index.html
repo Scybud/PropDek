@@ -1,46 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>EstateHub | Your Trusted Client Management Platform</title>
+    <title>EstateHub | Real Estate Client & Property Management Platform</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="EstateHub - Your go to platform for estate client management."
-    />
-    <meta
-      name="keywords"
-      content="estate, client management, estatehub, real estate, land, business"
-    />
+    <meta name="description" content="Streamline your real estate business with EstateHub. Manage clients, track properties, and close deals effortlessly." />
+    <meta name="keywords" content="estate management, CRM, real estate agent tool, client manager, property tracker" />
     <meta name="author" content="EstateHub Team" />
-    <meta
-      property="og:title"
-      content="EstateHub | Your Trusted Client Management Platform"
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="EstateHub | Scale Your Real Estate Business" />
+    <meta property="og:description" content="The modern workspace for property managers and real estate agents." />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://res.cloudinary.com/dc1bmavl5/image/upload/v1754908277/Untitled58_20250810204923_ifz10z.png" type="image/png" />
+    
+      <!--SCYBUD UI-->
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/variables.css"
     />
     <link
-      rel="icon"
-      href="https://res.cloudinary.com/dc1bmavl5/image/upload/v1754908277/Untitled58_20250810204923_ifz10z.png"
-      type="image-png"
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/layout.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/sidebar/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/nav-buttons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/typography.css"
+    />
+
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <h1>EstateHub</h1>
-    </header>
-    <main>
-      <div class="welcome-text">
-        <h2>
-          Welcome To EstateHub! <br />Your Trusted Client Management Platform
-        </h2>
-        <p>
-          Satisfy Your clients with up-to-date data handling and effortless
-          property management.
-        </p>
-        <a id="getstartedBtn" href="auth/login.html" style="text-decoration: none"
-          >Get Started</a
-        >
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="logo">
+        Estate<span class="logo-accent">Hub</span>
       </div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+       <!-- <a href="#analytics">Analytics</a> -->
+        <a href="auth/login.html" class="btn btn-secondary">Sign In</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container hero-container">
+          <h1 class="hero-title">
+            Property Management <br /><span>Built For Intent.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Satisfy your clients with up-to-date data handling, secure documentation, and effortless, unified property pipelines.
+          </p>
+          <div class="hero-actions">
+            <a id="getstartedBtn" href="auth/login.html" class="btn btn-primary">Get Started Free</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Grid Section -->
+      <section id="features" class="section features-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Everything you need to close deals faster</h2>
+            <p>Stop wrestling with messy spreadsheets. Manage your business from a singular dashboard.</p>
+          </div>
+          
+          <div class="grid cards-grid">
+            <div class="card">
+              <div class="card-icon">⚡</div>
+              <h3>Effortless Pipeline</h3>
+              <p>Track property statuses through a clean, visual workflow staging engine.</p>
+            </div>
+            
+            <div class="card">
+              <div class="card-icon">🔒</div>
+              <h3>Secure Data Handling</h3>
+              <p>Your client information, contract details, and property assets are encrypted and centralized safely.</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics/Preview Section
+      <section id="analytics" class="section analytics-section">
+        <div class="container split-container">
+          <div class="split-text">
+            <h2>Keep your finger on the pulse of your market</h2>
+            <p>Get real-time insights into active leads, high-performing listings, and pending commissions. EstateHub compiles your operational details into simple action items.</p>
+            <ul class="benefit-list">
+              <li>✓ Daily client activity summaries</li>
+              <li>✓ Interactive property inventory tracking</li>
+              <li>✓ Smooth handoffs between agents and clients</li>
+            </ul>
+          </div>
+          <div class="split-visual">
+
+
+             Mockup UI Element representing the app dashboard 
+            <div class="mock-dashboard">
+              <div class="mock-header"><span></span><span></span><span></span></div>
+              <div class="mock-body">
+                <div class="mock-sidebar"></div>
+                <div class="mock-content">
+                  <div class="mock-widget"></div>
+                  <div class="mock-widget"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    -->
+
+      <!-- Final CTA Section -->
+      <section class="section cta-section">
+        <div class="container cta-container">
+          <h2>Ready to elevate your property management?</h2>
+          <p>Join smart real estate professional scaling operations with clarity.</p>
+          <a href="auth/login.html" class="btn btn-primary">Create Your Account</a>
+        </div>
+      </section>
     </main>
+
+    <footer>
+      <p>&copy; 2026 EstateHub Team. Built with performance in public.</p>
+    </footer>
+
   </body>
 </html>
