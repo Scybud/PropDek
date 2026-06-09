@@ -29,7 +29,7 @@
       h2 {
         font-size: 2rem;
         font-weight: 600;
-        background: linear-gradient(90deg, #ffe600, #ffad00);
+        background: linear-gradient(130deg, #ffae00, #fff700);
         -webkit-background-clip: text;
         color: transparent;
         margin-bottom: 20px;
@@ -38,32 +38,72 @@
 
       /* Card Container */
       #details {
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 230, 0, 0.3);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 230, 0, 0.2);
         padding: 25px;
-        width: 90%;
+        width: 100%;
         max-width: 600px;
         border-radius: 12px;
         backdrop-filter: blur(6px);
-        box-shadow: 0 0 15px rgba(255, 230, 0, 0.2);
-        animation: fadeIn 0.6s ease-in-out;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        animation: fadeIn 0.4s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
       }
 
-      /* Each property line */
-      #details p,
+      /* Typography */
       #details h3 {
-        font-size: 1rem;
-        margin-bottom: 10px;
-      }
-
-      #details h3 {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
+        font-size: 1.6rem;
         color: #ffe600;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+      }
+
+      #details p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #e2e8f0;
       }
 
       strong {
         color: #ffdb4c;
+        font-weight: 500;
+      }
+
+      /* Sub-units Section Style */
+      .units-section {
+        margin-top: 15px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        padding-top: 15px;
+      }
+
+      .units-section h4 {
+        color: #ffe600;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .units-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+      }
+
+      .unit-pill {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #333;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+      }
+
+      .unit-pill span {
+        display: block;
+        font-size: 0.75rem;
+        color: #a0aec0;
+        margin-top: 2px;
       }
 
       /* Back Button */
@@ -83,14 +123,14 @@
 
       .btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+        box-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
       }
 
       /* Fade in Animation */
       @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(10px);
         }
         to {
           opacity: 1;
@@ -110,22 +150,63 @@
       const property = JSON.parse(localStorage.getItem("viewProperty"));
       const detailsDiv = document.getElementById("details");
 
-      const tenants = Array.isArray(property.tenants)
-        ? property.tenants.join(", ")
-        : property.tenants && property.tenants.trim() !== ""
-        ? property.tenants
-        : "[Vacant]";
+      if (!property) {
+        detailsDiv.innerHTML = `<p style="text-align:center; color:#ef4444;">No data found. Please return to the dashboard.</p>`;
+      } else {
+        // Fallback checks for optional parameters or formatting variations
+        const tenants = property.tenants && property.tenants.trim() !== "" 
+          ? escapeHTML(property.tenants) 
+          : "[Vacant]";
+        
+        // Fixed: Use leaseExpiry to sync perfectly with the new form engine payload
+        const expiryDate = property.leaseExpiry ? escapeHTML(property.leaseExpiry) : "N/A";
 
-      detailsDiv.innerHTML = `
-        <h3>${property.type}</h3>
-        <p><strong>Owner:</strong> ${property.owner}</p>
-        <p><strong>Tenants:</strong> ${tenants}</p>
-        <p><strong>Status:</strong> ${property.status}</p>
-        <p><strong>Rent/Value:</strong> ${property.rent}</p>
-        <p><strong>Expiry:</strong> ${property.expiry}</p>
-        <p><strong>Property Id:</strong> ${property.propertyId}</p>
-        <p><strong>Description:</strong> ${property.description || "-"}</p>
-      `;
+        // Build core structure layout
+        let detailsHTML = `
+          <h3>${escapeHTML(property.type)}</h3>
+          <p><strong>Address:</strong> ${escapeHTML(property.address || "No address provided")}</p>
+          <p><strong>Owner:</strong> ${escapeHTML(property.owner)}</p>
+          <p><strong>Tenants:</strong> ${tenants}</p>
+          <p><strong>Status:</strong> ${escapeHTML(property.status)}</p>
+          <p><strong>Rent/Value:</strong> ${escapeHTML(property.rent)}</p>
+          <p><strong>Lease Expiry:</strong> ${expiryDate}</p>
+          <p><strong>Property Id:</strong> <code style="color: #cbd5e1; font-family: monospace;">${escapeHTML(property.propertyId)}</code></p>
+          <p><strong>Description:</strong> ${escapeHTML(property.description || "-")}</p>
+        `;
+
+        // Loop through and append inner rooms/apartments if they exist in the dataset
+        if (property.units && property.units.length > 0) {
+          detailsHTML += `
+            <div class="units-section">
+              <h4>Assigned Units / Rooms (${property.units.length})</h4>
+              <div class="units-grid">
+          `;
+
+          property.units.forEach(unit => {
+            detailsHTML += `
+              <div class="unit-pill">
+                <strong>${escapeHTML(unit.name)}</strong>
+                <span>${escapeHTML(unit.type)}</span>
+              </div>
+            `;
+          });
+
+          detailsHTML += `
+              </div>
+            </div>
+          `;
+        }
+
+        detailsDiv.innerHTML = detailsHTML;
+      }
+
+      // XSS Prevention sanitizer
+      function escapeHTML(str) {
+        if (!str) return '';
+        return str.toString().replace(/[&<>'"]/g, 
+          tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+      }
     </script>
   </body>
 </html>

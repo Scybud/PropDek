@@ -5,48 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add Property | EstateHub</title>
 
-  <!-- SEO -->
   <meta name="description" content="Add new properties to EstateHub" />
   <meta name="keywords" content="real estate, add property, estatehub" />
   <meta name="author" content="EstateHub Team" />
   <link rel="canonical" href="https://www.estatehub.com/property.html" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="EstateHub - Add Property" />
-  <meta property="og:description" content="Add new properties to EstateHub" />
-  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="https://scybud.github.io/scybud-ui/css/variables.css" />
+  <link rel="stylesheet" href="https://scybud.github.io/scybud-ui/css/layout.css" />
+  <link rel="stylesheet" href="https://scybud.github.io/scybud-ui/components/sidebar/sidebar.css" />
+  <link rel="stylesheet" href="https://scybud.github.io/scybud-ui/components/buttons/nav-buttons.css" />
+  <link rel="stylesheet" href="https://scybud.github.io/scybud-ui/css/typography.css" />
 
-  <!--SCYBUD UI-->
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/css/variables.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/css/layout.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/components/sidebar/sidebar.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/components/buttons/nav-buttons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/css/typography.css"
-    />
-
-  <!-- Styles -->
   <link rel="stylesheet" href="../css/dashboard.css" />
   <link rel="stylesheet" href="../css/components/form.css">
 </head>
 
 <body>
-  <div class="dot-container">
-    </div>
-  <!-- NAVBAR -->
+  <div class="dot-container"></div>
+  
   <nav>
     <div class="menu-icon" onclick="toggleSidebar()">
       <span></span>
@@ -56,96 +32,99 @@
     <h1 class="app-title">EstateHub</h1>
   </nav>
 
-  <!-- SIDEBAR -->
   <aside id="sidebar">
     <div id="nav-bar">
       <p class="nav-title">Navigation</p>
-
     </div>
   </aside>
 
-  <!-- PAGE CONTENT -->
   <main id="dashboard-content">
-    
     <section id="add-property">
-     <form id="propertyForm">
-  <h2 class="page-title">Add Property</h2>
-  
-  <!-- Progress Bar Indicators -->
-  <div class="progress-indicator">
-    <span class="step-dot active">1</span>
-    <span class="step-dot">2</span>
-  </div>
+      <form id="propertyForm">
+        <h2 class="page-title">Add Property</h2>
+        
+        <div class="progress-indicator">
+          <span class="step-dot active">1</span>
+          <span class="step-dot">2</span>
+          <span class="step-dot">3</span>
+        </div>
 
-  <!-- STEP 1: Basic Information -->
-  <div class="form-step active" data-step="1">
-    <h3>Basic Info</h3>
-    <div class="form-group-row">
-      <input type="text" id="type" placeholder="Property type (e.g. Apartment)" required />
-      <input type="text" id="status" placeholder="Status (e.g. For Sale)" required />
-    </div>
-    <input type="text" id="owner" placeholder="Owner's name" required />
-    <textarea id="description" placeholder="Property description"></textarea>
-    
-    <button type="button" class="btn-next">Next Step →</button>
-  </div>
+        <div class="form-step active" data-step="1">
+          <h3>Basic Info</h3>
+          <div class="form-group-row">
+            <select id="type" required>
+              <option value="" disabled selected>Property Type</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Estate">Multi-unit Estate</option>
+              <option value="Single House">Single House</option>
+              <option value="Commercial Office">Commercial Office</option>
+            </select>
+            <select id="status" required>
+              <option value="" disabled selected>Status</option>
+              <option value="For Sale">For Sale</option>
+              <option value="Rented">Rented</option>
+              <option value="Leased">Leased</option>
+            </select>
+          </div>
+          <input type="text" id="owner" placeholder="Owner's name" required />
+          <textarea id="description" placeholder="Property description"></textarea>
+          
+          <button type="button" class="btn-next">Next Step →</button>
+        </div>
 
-  <!-- STEP 2: Financials & Location -->
-  <div class="form-step" data-step="2">
-    <h3>Financials & Address</h3>
-    <div class="form-group-row">
-      <input type="text" id="rent" placeholder="Amount (e.g. 100k)" required />
-      <input type="date" id="expiry" required />
-    </div>
-    <input type="text" id="tenants" placeholder="Tenant name(s) (Optional)" />
-    <input type="text" id="address" placeholder="Full Property Address" required />
+        <div class="form-step" data-step="2">
+          <h3>Property Units & Rooms</h3>
+          <p class="step-subtitle">Add the individual apartments, suites, or rooms contained within this listing.</p>
 
-    <div class="button-group">
-      <button type="button" class="btn-prev">← Back</button>
-      <button type="submit" class="submit-btn">Add Property 🎉</button>
-    </div>
-  </div>
-</form>
+          <div id="unitsContainer">
+            <div class="unit-card" data-unit-index="0">
+              <div class="unit-card-header">
+                <h4>Unit #1</h4>
+                <button type="button" class="btn-remove-unit" style="display: none;">Remove</button>
+              </div>
+              <div class="form-group-row">
+                <input type="text" name="unit_name[]" placeholder="Unit/Room # (e.g., Apt 1A)" required />
+                <select name="unit_type[]" required>
+                  <option value="" disabled selected>Select Type</option>
+                  <option value="Apartment">Full Apartment</option>
+                  <option value="Room">Single Room</option>
+                  <option value="Studio">Studio Suite</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="addUnitBtn" class="btn-add-repeater">+ Add Another Apartment / Room</button>
+
+          <div class="button-group">
+            <button type="button" class="btn-prev">← Back</button>
+            <button type="button" class="btn-next">Next Step →</button>
+          </div>
+        </div>
+
+        <div class="form-step" data-step="3">
+          <h3>Financials & Address</h3>
+          <div class="form-group-row">
+            <input type="text" id="rent" placeholder="Amount (e.g. 100k)" required />
+            <input type="date" id="expiry" required />
+          </div>
+          <input type="text" id="tenants" placeholder="Tenant name(s) (Optional)" />
+          <input type="text" id="address" placeholder="Full Property Address" required />
+
+          <div class="button-group">
+            <button type="button" class="btn-prev">← Back</button>
+            <button type="submit" class="submit-btn">Add Property 🎉</button>
+          </div>
+        </div>
+      </form>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
-    <p>EstateHub © 2025 — Manage With Confidence</p>
+    <p>EstateHub © 2026 — Manage With Confidence</p>
   </footer>
 
-  <!-- SCRIPT (DO NOT TOUCH) -->
-  <script>
-    let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
-
-    const propertyForm = document.getElementById("propertyForm");
-    propertyForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const type = document.getElementById("type").value.trim();
-      const owner = document.getElementById("owner").value.trim();
-      const status = document.getElementById("status").value.trim();
-      const rent = "₦" + document.getElementById("rent").value.trim();
-      const expiry = document.getElementById("expiry").value.trim();
-      const tenants = document.getElementById("tenants").value.trim();
-      const description = document.getElementById("description").value.trim();
-const propertyId = crypto.randomUUID();
-      const newProperty = { type, owner, status, rent, expiry, tenants, description, propertyId };
-      getproperty.push(newProperty);
-      localStorage.setItem("properties", JSON.stringify(getproperty));
-
-      window.location.href = "dashboard.html";
-    });
-
-    function deleteProperty(index) {
-      if (confirm("Are you sure?")) {
-        getproperty.splice(index, 1);
-        localStorage.setItem("properties", JSON.stringify(getproperty));
-        renderCards();
-      }
-    }
-  </script>
-      <script src="../nav.js"></script>
+  <script src="../nav.js"></script>
   <script src="../sidebar.js"></script>
   <script type="module" src="../js/components/form.js"></script>
 </body>

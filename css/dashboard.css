@@ -145,7 +145,8 @@ aside.hide {
 }
 
 .statsCard {
-  background: #ffa500;
+  display: grid;
+  background: var(--surface-primary);
   border-radius: 14px;
   flex: 1;
   min-width: 200px;
@@ -160,8 +161,48 @@ aside.hide {
 }
 
 .statsCard h3 {
-  margin-bottom: 6px;
+  order: 2;
+  font-size: var(--text-md);
+}
+.statsCard p {
+  color: var(--accent);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+}
+
+/* Table Layout Badges */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.status-badge.for-sale { background: rgba(255, 174, 0, 0.15); color: #ffae00; }
+.status-badge.rented { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.status-badge.leased { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+
+.unit-counter-badge {
+  display: inline-block;
+  background: #222;
+  border: 1px solid #444;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.action-view-btn {
+  padding: 6px 14px;
+  background: #ffe600;
   color: #000;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.action-view-btn:hover {
+  opacity: 0.9;
 }
 
 /* ================================
@@ -173,7 +214,7 @@ aside.hide {
 }
 
 #detailsCard div {
-  background: #202020;
+  background: var(--surface-primary);
   border-radius: 14px;
   padding: 14px;
   border: 1px solid #333;
@@ -182,26 +223,26 @@ aside.hide {
 
 #detailsCard > div:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(255, 168, 7, 0.6);
+  box-shadow: 0 8px 18px rgba(255, 168, 7, 0.082);
 }
 #detailsCard div h3 {
-  color: orange;
+  color: var(--accent);
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #444;
-  background: #000000;
-  border-radius: 10px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
   margin: 10px auto 14px;
 }
 #detailsCard div p {
   margin: 18px;
 }
 #detailsCard button {
-  margin-top: 8px;
-  margin-right: 8px;
+  margin-right: var(--space-sm);
   padding: 6px 14px;
-  background: #fff;
+  background: var(--primary);
   color: #000;
+  font-weight: var(--font-bold);
   border-radius: 6px;
   cursor: pointer;
   border: none;
@@ -209,8 +250,8 @@ aside.hide {
 }
 
 #detailsCard button:hover {
-  background: #7a7a7a;
-  color: #fff;
+  color: #fdfdfd;
+  background: var(--hover-bg);
 }
 
 /* ================================
@@ -218,7 +259,6 @@ aside.hide {
 ================================ */
 footer {
   text-align: center;
-  color: #fff;
   padding: 16px;
   font-size: 14px;
   margin-top: 25px;
