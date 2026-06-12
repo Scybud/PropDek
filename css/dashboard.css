@@ -13,6 +13,9 @@ body {
   color: var(--text-primary);
 }
 
+.header {
+  display: none;
+}
 /* ================================
    NAVBAR (Top Sticky)
 ================================ */
@@ -27,7 +30,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 15px;
-  z-index: 1000;
+  z-index: 1;
 }
 
 nav h1 {
@@ -44,8 +47,8 @@ nav h1 {
 
 .menu-icon span {
   display: block;
-  height: 4px;
-  background: #ffffff;
+  height: 2px;
+  background: var(--text-primary);
   margin: 5px;
   border-radius: 2px;
   transition: 0.4s;
@@ -58,14 +61,8 @@ aside {
   position: fixed;
   top: 55px;
   left: 0;
-  width: 280px;
-  height: calc(100vh - 55px);
-  background: #1b1b1b;
-  border-right: 2px solid #111;
   padding-top: 15px;
   overflow-y: auto;
-  transition: left 0.45s ease;
-  z-index: 999;
 }
 
 aside::-webkit-scrollbar {
@@ -97,7 +94,6 @@ aside.hide {
   width: 90%;
   margin: 8px auto;
   padding: 14px;
-  background: #2a2a2a;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
@@ -122,13 +118,9 @@ aside.hide {
 ================================ */
 #dashboard-content {
   flex: 1;
-  padding: 80px 20px 30px 20px;
-  margin-left: 280px;
+  padding: 0 20px 30px;
+  margin-left: 260px;
   transition: margin 0.45s ease;
-}
-
-#dashboardHeader {
-  margin-bottom: 20px;
 }
 
 /* ================================
@@ -157,7 +149,7 @@ aside.hide {
 
 .statsCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 22px rgba(255, 168, 7, 0.249);
+  box-shadow: 0 8px 18px rgba(255, 168, 7, 0.082);
 }
 
 .statsCard h3 {
@@ -210,9 +202,14 @@ aside.hide {
 ================================ */
 #detailsCard {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
-
+@media (max-width: 600px) {
+  #detailsCard {
+    grid-template-columns: 1fr;
+  }
+}
 #detailsCard div {
   background: var(--surface-primary);
   border-radius: 14px;
@@ -242,7 +239,6 @@ aside.hide {
   padding: 6px 14px;
   background: var(--primary);
   color: #000;
-  font-weight: var(--font-bold);
   border-radius: 6px;
   cursor: pointer;
   border: none;
@@ -272,8 +268,12 @@ footer {
   .menu-icon {
     display: block;
   }
-
+.header {
+  display: block;
+}
   aside {
+    top: 55px !important;
+    bottom: 0;
     left: -100%;
   }
 

@@ -54,10 +54,22 @@
       rel="stylesheet"
       href="https://scybud.github.io/scybud-ui/css/typography.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/global-buttons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/modals.css"
+    />
 
 
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
+      <link rel="stylesheet" href="../css/components/form.css">
+      <link rel="stylesheet" href="../css/components/buttons.css">
+
     <style>
       .placeholderText {
         opacity: 0.3;
@@ -107,7 +119,7 @@
       }
     </style>
   </head>
-  <header>
+  <header class="header">
 
     <nav style="display: inline-flex">
       <div class="menu-icon" onclick="toggleSidebar()">
@@ -117,26 +129,32 @@
       </div>
       <h1>EstateHub</h1>
     </nav>
-    <aside id="sidebar">
+  </header>
+
+
+    <aside id="sidebar" class="sidebar">
       <div id="nav-bar">
-        <p>Navigate</p>
         <!--USE JS TO ADD NAV LINKS-->
       </div>
     </aside>
-  </header>
   <body>
-    <div class="dot-container">
-    </div>
+    <div class="dot-container"></div>
+         <!--TOAST MESSAGES-->
+        <div id="toast"></div>
+<!--MODAL CONTAINER-->
+    <div id="modalContainer"></div>
+
 
     <div id="dashboard-content">
-      <h2 id="dashboardHeader">Overview</h2>
+              <div class="section-header"><h2>Overview</h2></div>
+
       <section id="statsCards">
         <div id="allProperties" class="statsCard">
           <h3>Property Count</h3>
           <p id="allPropertiesCount">0</p>
         </div>
         <div id="rentedProperty" class="statsCard">
-          <h3>Rented</h3>
+          <h3>Rented / Leased</h3>
           <p id="rentedPropertyCount">0</p>
         </div>
         <div id="availableProperty" class="statsCard">
@@ -145,6 +163,9 @@
         </div>
       </section>
       <section id="property-table-section">
+        <div class="section-header"><h2>Properties</h2> <button type="button" class="btn-primary btn add-property">Add Property</button></div>
+
+
         <div id="detailsCard"></div>
       </section>
     </div>
@@ -213,6 +234,7 @@
 
       document.addEventListener("DOMContentLoaded", renderCards);
     </script>
+    <script type="module" src="../js/app.js"></script>
     <script src="../nav.js"></script>
     <script src="../sidebar.js"></script>
   </body>

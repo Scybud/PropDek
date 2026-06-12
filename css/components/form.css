@@ -24,6 +24,7 @@ main h2 {
 
 /* Form Container */
 form {
+  position: relative;
   width: 100%;
   max-width: 600px;
   margin-top: 22px;
@@ -89,8 +90,6 @@ legend {
 
 /* Action Buttons System */
 button, .submit-btn, .btn-next, .btn-prev {
-  width: 100%;
-  padding: 12px;
   font-size: 1rem;
   border: none;
   border-radius: 8px;

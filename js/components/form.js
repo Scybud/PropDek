@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+export async function handleFormSteps() {
   const form = document.getElementById("propertyForm");
   const steps = document.querySelectorAll(".form-step");
   const dots = document.querySelectorAll(".step-dot");
@@ -136,4 +136,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.location.href = "dashboard.html";
   });
-});
+};
