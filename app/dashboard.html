@@ -208,7 +208,7 @@
           <p><b>Property Status:</b> ${property.status}</p>
           <p><b>Rent Price:</b> ${property.rent}</p>
           <button onclick="viewProperty(${index})">👀 View</button>
-          <button onclick="deleteProperty(${index})">🗑 Remove</button>
+          <button class="danger" onclick="deleteProperty(${index})">🗑 Remove</button>
           `;
           detailsCard.prepend(cardDiv);
         });
