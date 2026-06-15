@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | EstateHub</title>
+
+      <!--SCYBUD UI-->
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/variables.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/typography.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/global-buttons.css"
+    />
+<link rel="stylesheet" href="https://scybud.github.io/scybud-ui/css/animations.css">
+
+    <!--APP CSS-->
+    <link rel="stylesheet" href="../css/components/toast.css">
     <link rel="stylesheet" href="../css/auth.css" />
   </head>
   
@@ -11,6 +29,8 @@
     <div class="dot-container">
     </div>
     <main>
+
+      <div id="toast"></div>
 <!--
         <h1>Welcome to <span class="logo">Estate<span>Hub</span></span></h1>
         -->
@@ -37,28 +57,8 @@
         <p>No account yet? <a id="signupLink" href="signup.html">Signup</a></p>
       </form>
     </main>
-    <script>
-      const loginLink = document.getElementById("loginLink");
-      const signupLink = document.getElementById("signupLink");
-      const loginForm = document.getElementById("loginForm");
-      const signupForm = document.getElementById("signupForm");
-
-      function showLogin() {
-        signupForm.style.display = "none";
-        loginForm.style.display = "block";
-      }
-      function showSignup() {
-        loginForm.style.display = "none";
-        signupForm.style.display = "block";
-      }
-      loginLink.addEventListener("click", () => {
-        showLogin();
-      });
-      signupLink.addEventListener("click", () => {
-        showSignup();
-      });
-    </script>
-    <script src="../nav.js"></script>
-    <script src="../sidebar.js"></script>
+    
+<script type="module" src="../js/auth/auth.js"></script>
+<script type="module" src="../js/auth/login.js"></script>
   </body>
 </html>
