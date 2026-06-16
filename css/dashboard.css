@@ -19,7 +19,7 @@ body {
 /* ================================
    NAVBAR (Top Sticky)
 ================================ */
-nav {
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -27,13 +27,12 @@ nav {
   background: #252424;
   height: 55px;
   padding: 0 18px;
-  display: flex;
   align-items: center;
   gap: 15px;
   z-index: 1;
 }
 
-nav h1 {
+.header h1 {
   font-size: 1.35rem;
   font-weight: 700;
 }
@@ -52,65 +51,6 @@ nav h1 {
   margin: 5px;
   border-radius: 2px;
   transition: 0.4s;
-}
-
-/* ================================
-   SIDEBAR (Desktop + Mobile Slide)
-================================ */
-aside {
-  position: fixed;
-  top: 55px;
-  left: 0;
-  padding-top: 15px;
-  overflow-y: auto;
-}
-
-aside::-webkit-scrollbar {
-  width: 6px;
-}
-aside::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 6px;
-}
-
-/* Sidebar Hidden (mobile state default) */
-aside.hide {
-  left: -100%;
-}
-
-/* ================================
-   SIDEBAR LINKS
-================================ */
-#nav-bar p {
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-.anchor-nav-bar {
-  border: none;
-  display: block;
-  width: 90%;
-  margin: 8px auto;
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  color: #fff;
-  transition: background-color 0.35s ease, transform 0.25s ease;
-}
-
-.anchor-nav-bar:hover {
-  background-color: #3c3c3c;
-  transform: translateX(6px);
-}
-
-.anchor-nav-bar.active {
-  background-color: #00bcd4;
-  color: #000;
-  font-weight: 700;
 }
 
 /* ================================
@@ -267,17 +207,8 @@ footer {
     display: block;
   }
 .header {
-  display: block;
+  display: inline-flex;
 }
-  aside {
-    top: 55px !important;
-    bottom: 0;
-    left: -100%;
-  }
-
-  aside.show {
-    left: 0;
-  }
 
   #dashboard-content {
     margin-left: 0;

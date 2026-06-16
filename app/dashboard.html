@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/components/sidebar.css">
       <link rel="stylesheet" href="../css/components/form.css">
       <link rel="stylesheet" href="../css/components/buttons.css">
 
@@ -120,15 +121,12 @@
     </style>
   </head>
   <header class="header">
-
-    <nav style="display: inline-flex">
       <div class="menu-icon" onclick="toggleSidebar()">
         <span></span>
         <span></span>
         <span></span>
       </div>
       <h1>EstateHub</h1>
-    </nav>
   </header>
 
 
@@ -136,6 +134,24 @@
       <div id="nav-bar">
         <!--USE JS TO ADD NAV LINKS-->
       </div>
+
+      <div class="sidebarBottom">
+          <div class="userInfo">
+
+            <div class="userInfoContent">
+              <p id="userName" class="userName text-bold">Loading...</p>
+              <p id="userEmail" class="userEmail">Loading...</p>
+            </div>
+          </div>
+
+          <button type="button" class="logoutBtn" id="logoutBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" 
+     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M15 3h4v18h-4" />
+  <path d="M10 17l5-5-5-5" />
+  <path d="M15 12H3" />
+</svg>
+</button>
+        </div>
     </aside>
   <body>
     <div class="dot-container"></div>
@@ -193,6 +209,9 @@
       });
     </script>
 
+
+<script type="module" src="../js/session.js"></script>
+<script type="module" src="../js/app.js"></script>
         <script type="module" src="../js/auth/auth.js"></script>
     <script src="../js/components/nav.js"></script>
     <script src="../js/components/sidebar.js"></script>

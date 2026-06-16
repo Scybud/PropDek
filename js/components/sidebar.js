@@ -3,6 +3,7 @@ const sidebar = document.getElementById("sidebar");
 function toggleSidebar() {
   sidebar.classList.toggle("show");
 }
+
 //to move between pages if using select element
 function goToLink(selectElement) {
   const selectedValue = selectElement.value;
@@ -10,6 +11,7 @@ function goToLink(selectElement) {
     window.location.href = selectedValue;
   }
 }
+
 // Link glows slightly when active
 const links = document.querySelectorAll(".anchor-nav-bar");
 links.forEach((link) => {
@@ -30,5 +32,5 @@ for(let i = 0; i < 3; i++) {
 }
 
    window.addEventListener("load", () => {
-     dotContainer.style.display = "none";
+     dotContainer.remove()
    });
