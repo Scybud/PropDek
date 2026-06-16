@@ -3,6 +3,8 @@
  * @param {Array} propertiesArray - Collection array matching properties row schemas
  * @param {Function} onDeleteClick - Action callback forwarding the unique instance target UUID
  */
+      import { loadComponent, createEmptyState } from "https://scybud.github.io/scybud-ui/js/ui.js";
+import { handleFormSteps } from "../create/add-property.js";
 
 export function renderOverviewStats(propertiesArray) {
   const allPropertiesCount = document.getElementById("allPropertiesCount");
@@ -54,7 +56,7 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick) {
 
   propertiesArray.forEach((property) => {
     const cardDiv = document.createElement("div");
-    cardDiv.classList.add("property-card");
+    cardDiv.classList.add("card");
 
     let statusBadgeClass = "for-sale";
     if (property.status?.toLowerCase() === "rented")

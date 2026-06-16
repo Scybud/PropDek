@@ -23,3 +23,12 @@ button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.btn {
+  display: flex;
+  align-items: center;
+}
+.btn.btn-sm {
+  font-size: var(--text-sm);
+  font-weight: 550;
+  padding: var(--space-xs) var(--space-md);
+}

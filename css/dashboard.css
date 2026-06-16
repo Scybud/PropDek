@@ -56,7 +56,7 @@ body {
 /* ================================
    DASHBOARD CONTENT
 ================================ */
-#dashboard-content {
+#app-content {
   flex: 1;
   padding: 0 20px 30px;
   margin-left: 260px;
@@ -150,7 +150,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
-.property-card {
+.card {
   background: var(--surface-primary);
   border-radius: 14px;
   padding: 14px;
@@ -158,10 +158,10 @@ body {
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.property-card:hover {
+.card:hover {
   box-shadow: 0 8px 18px rgba(255, 168, 7, 0.082);
 }
-.property-card h3 {
+.card h3 {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #444;
@@ -169,10 +169,10 @@ body {
   border-radius: var(--radius-md);
   margin: 10px auto 14px;
 }
-.property-card p {
+.card p {
   margin: var(--space-sm) 0;
 }
-.property-card button {
+.card button {
   margin-right: var(--space-sm);
   padding: 6px 14px;
   background: var(--primary);
@@ -210,7 +210,7 @@ footer {
   display: inline-flex;
 }
 
-  #dashboard-content {
+  #app-content {
     margin-left: 0;
     padding-top: 70px;
   }
