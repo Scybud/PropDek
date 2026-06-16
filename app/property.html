@@ -126,7 +126,13 @@
         box-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
       }
 
-      /* Fade in Animation */
+      /* Loading indicator placement */
+      .loading-text {
+        text-align: center;
+        color: #a0aec0;
+        font-style: italic;
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -142,71 +148,13 @@
   <body>
     <h2>Property Details</h2>
 
-    <div id="details"></div>
+    <div id="details">
+      <p class="loading-text">Fetching live database record...</p>
+    </div>
 
     <a class="btn" href="dashboard.html">← Back to Dashboard</a>
 
-    <script>
-      const property = JSON.parse(localStorage.getItem("viewProperty"));
-      const detailsDiv = document.getElementById("details");
-
-      if (!property) {
-        detailsDiv.innerHTML = `<p style="text-align:center; color:#ef4444;">No data found. Please return to the dashboard.</p>`;
-      } else {
-        // Fallback checks for optional parameters or formatting variations
-        const tenants = property.tenants && property.tenants.trim() !== "" 
-          ? escapeHTML(property.tenants) 
-          : "[Vacant]";
-        
-        // Fixed: Use leaseExpiry to sync perfectly with the new form engine payload
-        const expiryDate = property.leaseExpiry ? escapeHTML(property.leaseExpiry) : "N/A";
-
-        // Build core structure layout
-        let detailsHTML = `
-          <h3>${escapeHTML(property.type)}</h3>
-          <p><strong>Address:</strong> ${escapeHTML(property.address || "No address provided")}</p>
-          <p><strong>Owner:</strong> ${escapeHTML(property.owner)}</p>
-          <p><strong>Tenants:</strong> ${tenants}</p>
-          <p><strong>Status:</strong> ${escapeHTML(property.status)}</p>
-          <p><strong>Rent/Value:</strong> ${escapeHTML(property.rent)}</p>
-          <p><strong>Lease Expiry:</strong> ${expiryDate}</p>
-          <p><strong>Property Id:</strong> <code style="color: #cbd5e1; font-family: monospace;">${escapeHTML(property.propertyId)}</code></p>
-          <p><strong>Description:</strong> ${escapeHTML(property.description || "-")}</p>
-        `;
-
-        // Loop through and append inner rooms/apartments if they exist in the dataset
-        if (property.units && property.units.length > 0) {
-          detailsHTML += `
-            <div class="units-section">
-              <h4>Assigned Units / Rooms (${property.units.length})</h4>
-              <div class="units-grid">
-          `;
-
-          property.units.forEach(unit => {
-            detailsHTML += `
-              <div class="unit-pill">
-                <strong>${escapeHTML(unit.name)}</strong>
-                <span>${escapeHTML(unit.type)}</span>
-              </div>
-            `;
-          });
-
-          detailsHTML += `
-              </div>
-            </div>
-          `;
-        }
-
-        detailsDiv.innerHTML = detailsHTML;
-      }
-
-      // XSS Prevention sanitizer
-      function escapeHTML(str) {
-        if (!str) return '';
-        return str.toString().replace(/[&<>'"]/g, 
-          tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
-      }
-    </script>
+    <script type="module" src="../js/auth/auth.js"></script>
+    <script type="module" src="../js/dashboard/propertyDetails.js"></script>
   </body>
 </html>

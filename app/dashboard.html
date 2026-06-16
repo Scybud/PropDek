@@ -170,72 +170,31 @@
       </section>
     </div>
 
-    <script>
-      //Get property details from local storage
-      let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
+    <script type="module">
+      import { initDashboard } from '../js/dashboard/dashboard.js';
+      import { loadComponent } from "https://scybud.github.io/scybud-ui/js/ui.js";
+      import { handleFormSteps } from "../js/create/add-property.js";
 
-      function renderCards() {
-        const detailsCard = document.getElementById("detailsCard");
-        let allPropertiesCount = document.getElementById("allPropertiesCount");
-        let rentedPropertyCount = document.getElementById(
-          "rentedPropertyCount"
-        );
-        let availablePropertyCount = document.getElementById(
-          "availablePropertyCount"
-        );
-        let allCount = 0;
-        let rentedCount = 0;
-        let availableCount = 0;
-        if (!detailsCard) return; // exit if table not on this page
+      document.addEventListener("DOMContentLoaded", () => {
+          // Fire core dashboard fetch logic loops
+          initDashboard();
 
-        if (getproperty.length === 0) {
-          detailsCard.innerHTML = `<p class="placeholderText">Nothing to show</p>`;
-          return;
-        }
-
-        detailsCard.innerHTML = "";
-        getproperty.forEach((property, index) => {
-          allCount++;
-          if (property.status.toLowerCase() === "rented") {
-            rentedCount++;
-          } else {
-            availableCount++;
-          }
-          const cardDiv = document.createElement("div");
-          cardDiv.innerHTML = `
-          <h3>${property.owner}</h3>
-          <p><b>Property Type:</b> ${property.type}</p>
-          <p><b>Property Status:</b> ${property.status}</p>
-          <p><b>Rent Price:</b> ${property.rent}</p>
-          <button onclick="viewProperty(${index})">👀 View</button>
-          <button class="danger" onclick="deleteProperty(${index})">🗑 Remove</button>
-          `;
-          detailsCard.prepend(cardDiv);
-        });
-        allPropertiesCount.innerText = allCount;
-        rentedPropertyCount.innerText = rentedCount;
-        availablePropertyCount.innerText = availableCount;
-      }
-
-      function viewProperty(index) {
-        const selectedProperty = getproperty[index];
-        localStorage.setItem("viewProperty", JSON.stringify(selectedProperty));
-        window.location.href = "property.html";
-      }
-      //delet property card
-      function deleteProperty(index) {
-        if (confirm("Are you sure you want to delete?")) {
-          getproperty.splice(index, 1);
-          localStorage.setItem("properties", JSON.stringify(getproperty));
-          renderCards();
-          location.reload();
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", renderCards);
+          // Bind modal actions
+          const addPropertyBtn = document.querySelectorAll(".add-property");
+          addPropertyBtn.forEach((btn) => {
+              btn.addEventListener("click", async () => {
+                  await loadComponent(
+                      "../components/modals/add-property.html",
+                      "modalContainer"
+                  );
+                  await handleFormSteps();
+              });
+          });
+      });
     </script>
-    <script type="module" src="../js/app.js"></script>
-    <script src="../nav.js"></script>
-    <script src="../sidebar.js"></script>
+
+        <script type="module" src="../js/auth/auth.js"></script>
+    <script src="../js/components/nav.js"></script>
+    <script src="../js/components/sidebar.js"></script>
   </body>
 </html>

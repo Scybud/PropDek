@@ -1,106 +1,103 @@
-   <div class="modal-container">
-      <form class="add-property" id="propertyForm">
-        <button class="closeModalBtn ">
-          <!--CLOSE BUTTON-->
-          <svg 
-  xmlns="http://www.w3.org/2000/svg"
-  width="22"
-  height="22"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="1.7"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <rect
-    x="3.5"
-    y="3.5"
-    width="17"
-    height="17"
-    rx="6"
-    ry="6"
-    fill="currentColor"
-    opacity="0.06"
-  />
-  <path d="M9 9l6 6M15 9l-6 6" />
-</svg>
-</button>
+<div class="modal-container">
+  <form class="add-property" id="propertyForm">
+    <button type="button" class="closeModalBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="6" ry="6" fill="currentColor" opacity="0.06" />
+        <path d="M9 9l6 6M15 9l-6 6" />
+      </svg>
+    </button>
 
-<h2>Add Property</h2>
+    <h2>Add Client Property</h2>
 
-        <div class="progress-indicator">
-          <span class="step-dot active">1</span>
-          <span class="step-dot">2</span>
-          <span class="step-dot">3</span>
-        </div>
+    <div class="progress-indicator">
+      <span class="step-dot active">1</span>
+      <span class="step-dot">2</span>
+      <span class="step-dot">3</span>
+    </div>
 
-        <div class="form-step active" data-step="1">
-          <h3>Basic Info</h3>
+    <div class="form-step active" data-step="1">
+      <h3>Basic Info</h3>
+      <div class="form-group-row">
+        <select id="property_type" required>
+          <option value="" disabled selected>Property Type</option>
+          <option value="Apartment">Apartment Block</option>
+          <option value="Estate">Multi-unit Estate</option>
+          <option value="Single House">Single House</option>
+          <option value="Commercial Office">Commercial Office</option>
+        </select>
+        <select id="status" required>
+          <option value="available" selected>Available / Managed</option>
+          <option value="sold">Sold</option>
+          <option value="rented">Rented</option>
+        </select>
+      </div>
+      
+      <input type="text" id="title" placeholder="Property Building Title (e.g., Alpha Plaza)" required />
+      <input type="text" id="owner_name" placeholder="Client / Owner Name" required />
+      <textarea id="description" placeholder="Internal property notes, maintenance history, or client instructions..."></textarea>
+      
+      <button type="button" class="btn-next btn">Next Step →</button>
+    </div>
+
+    <div class="form-step" data-step="2">
+      <h3>Property Units & Rooms</h3>
+      <p class="step-subtitle">Add the individual apartments, suites, or rooms contained within this managed asset.</p>
+
+      <div id="unitsContainer">
+        <div class="unit-card" data-unit-index="0">
+          <div class="unit-card-header">
+            <h4>Unit #1</h4>
+            <button type="button" class="btn-remove-unit" style="display: none;">Remove</button>
+          </div>
           <div class="form-group-row">
-            <select id="type" required>
-              <option value="" disabled selected>Property Type</option>
-              <option value="Apartment">Apartment</option>
-              <option value="Estate">Multi-unit Estate</option>
-              <option value="Single House">Single House</option>
-              <option value="Commercial Office">Commercial Office</option>
-            </select>
-            <select id="status" required>
-              <option value="" disabled selected>Status</option>
-              <option value="For Sale">For Sale</option>
-              <option value="Rented">Rented</option>
-              <option value="Leased">Leased</option>
+            <input type="text" name="unit_name[]" placeholder="Unit # (e.g., Apt 1A)" required />
+            <select name="unit_type[]" required>
+              <option value="" disabled selected>Select Type</option>
+              <option value="Apartment">Full Apartment</option>
+              <option value="Room">Single Room</option>
+              <option value="Studio">Studio Suite</option>
             </select>
           </div>
-          <input type="text" id="owner" placeholder="Owner's name" required />
-          <textarea id="description" placeholder="Property description"></textarea>
-          
-          <button type="button" class="btn-next btn">Next Step →</button>
-        </div>
-
-        <div class="form-step" data-step="2">
-          <h3>Property Units & Rooms</h3>
-          <p class="step-subtitle">Add the individual apartments, suites, or rooms contained within this listing.</p>
-
-          <div id="unitsContainer">
-            <div class="unit-card" data-unit-index="0">
-              <div class="unit-card-header">
-                <h4>Unit #1</h4>
-                <button type="button" class="btn-remove-unit" style="display: none;">Remove</button>
-              </div>
-              <div class="form-group-row">
-                <input type="text" name="unit_name[]" placeholder="Unit/Room # (e.g., Apt 1A)" required />
-                <select name="unit_type[]" required>
-                  <option value="" disabled selected>Select Type</option>
-                  <option value="Apartment">Full Apartment</option>
-                  <option value="Room">Single Room</option>
-                  <option value="Studio">Studio Suite</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <button type="button" id="addUnitBtn" class="btn-add-repeater">+ Add Another Apartment / Room</button>
-
-          <div class="button-group">
-            <button type="button" class="btn-prev btn">← Back</button>
-            <button type="button" class="btn-next btn">Next Step →</button>
-          </div>
-        </div>
-
-        <div class="form-step" data-step="3">
-          <h3>Financials & Address</h3>
           <div class="form-group-row">
-            <input type="text" id="rent" placeholder="Amount (e.g. 100k)" required />
-            <input type="date" id="expiry" required />
-          </div>
-          <input type="text" id="tenants" placeholder="Tenant name(s) (Optional)" />
-          <input type="text" id="address" placeholder="Full Property Address" required />
-
-          <div class="button-group">
-            <button type="button" class="btn-prev btn">← Back</button>
-            <button type="submit" class="submit-btn btn">Add Property 🎉</button>
+            <input type="number" name="unit_beds[]" placeholder="Beds" min="0" value="0"/>
+            <input type="number" name="unit_baths[]" placeholder="Baths" min="0" value="0"/>
           </div>
         </div>
-      </form>
-    </section>
+      </div>
+
+      <button type="button" id="addUnitBtn" class="btn-add-repeater">+ Add Another Apartment / Room</button>
+
+      <div class="button-group">
+        <button type="button" class="btn-prev btn">← Back</button>
+        <button type="button" class="btn-next btn">Next Step →</button>
+      </div>
+    </div>
+
+    <div class="form-step" data-step="3">
+      <h3>Financials & Address</h3>
+      <div class="form-group-row">
+        <input type="number" id="list_price" placeholder="Rent/Sale Valuation Amount (NGN)" required step="0.01" />
+        <select id="period" required>
+          <option value="rent" selected>For Rent</option>
+          <option value="sale">For Sale</option>
+        </select>
+      </div>
+      
+      <div class="form-group-row">
+        <label for="rent_expiry_date" style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Lease/Rent Expiry Date</label>
+        <input type="date" id="rent_expiry_date" required />
+      </div>
+      
+      <input type="text" id="address" placeholder="Full Property Location Address" required />
+      <div class="form-group-row">
+        <input type="text" id="city" placeholder="City" required />
+        <input type="text" id="state" placeholder="State (e.g., Lagos)" required />
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn-prev btn">← Back</button>
+        <button type="submit" class="submit-btn btn">Add Property Asset 🎉</button>
+      </div>
+    </div>
+  </form>
+</div>

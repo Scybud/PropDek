@@ -219,7 +219,6 @@ aside.hide {
 }
 
 #detailsCard > div:hover {
-  transform: translateY(-5px);
   box-shadow: 0 8px 18px rgba(255, 168, 7, 0.082);
 }
 #detailsCard div h3 {
