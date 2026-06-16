@@ -1,0 +1,38 @@
+.card {
+  background: var(--surface-primary);
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid #333;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 18px rgba(255, 168, 7, 0.082);
+}
+
+.card h3 {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  margin: 10px auto 14px;
+}
+
+.card p {
+  margin: var(--space-sm) 0;
+}
+.card button {
+  margin-right: var(--space-sm);
+  padding: 6px 14px;
+  background: var(--primary);
+  color: #000;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.card button:hover {
+  color: #fdfdfd;
+  background: var(--hover-bg);
+}

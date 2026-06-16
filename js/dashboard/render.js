@@ -56,7 +56,7 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick) {
 
   propertiesArray.forEach((property) => {
     const cardDiv = document.createElement("div");
-    cardDiv.classList.add("card");
+    cardDiv.classList.add("card", "property-card");
 
     let statusBadgeClass = "for-sale";
     if (property.status?.toLowerCase() === "rented")

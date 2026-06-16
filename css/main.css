@@ -1,3 +1,64 @@
+.header {
+  display: none;
+}
+/* ================================
+   NAVBAR (Top Sticky)
+================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #252424;
+  height: 55px;
+  padding: 0 18px;
+  align-items: center;
+  gap: 15px;
+  z-index: 1;
+}
+
+.header h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* Burger Icon (mobile only active) */
+.menu-icon {
+  width: 34px;
+  cursor: pointer;
+  display: none;
+}
+
+.menu-icon span {
+  display: block;
+  height: 2px;
+  background: var(--text-primary);
+  margin: 5px;
+  border-radius: 2px;
+  transition: 0.4s;
+}
+
+/* ================================
+   DASHBOARD CONTENT
+================================ */
+#app-content {
+  flex: 1;
+  padding: 0 20px 30px;
+  margin-left: 260px;
+  transition: margin 0.45s ease;
+}
+
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 600px) {
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -62,3 +123,20 @@ div.dot-container {
       .dot-container.hide {
         display: none;
       }
+
+      /* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 800px) {
+  .menu-icon {
+    display: block;
+  }
+.header {
+  display: inline-flex;
+}
+
+  #app-content {
+    margin-left: 0;
+    padding-top: 70px;
+  }
+}

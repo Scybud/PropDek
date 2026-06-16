@@ -4,3 +4,18 @@
     --secondary: #00bcd4;
     --accent: #ff9800;    
 }
+
+/* ================================
+   GLOBAL
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  color: var(--text-primary);
+}
