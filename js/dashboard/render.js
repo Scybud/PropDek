@@ -7,13 +7,11 @@
 import { handleFormSteps } from "../create/add-property.js";
 
 export function renderOverviewStats(propertiesArray) {
-  const allPropertiesCount = document.getElementById("allPropertiesCount");
   const rentedPropertyCount = document.getElementById("rentedPropertyCount");
   const availablePropertyCount = document.getElementById(
     "availablePropertyCount",
   );
 
-  if (!allPropertiesCount) return;
 
   const total = propertiesArray.length;
   const rented = propertiesArray.filter(
@@ -21,7 +19,6 @@ export function renderOverviewStats(propertiesArray) {
   ).length;
   const available = total - rented;
 
-  allPropertiesCount.innerText = total;
   rentedPropertyCount.innerText = rented;
   availablePropertyCount.innerText = available;
 }

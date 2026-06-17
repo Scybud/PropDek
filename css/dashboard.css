@@ -99,9 +99,11 @@ footer {
   
 
   #statsCards {
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
   }
   .statsCard {
-    width: 95%;
+    min-width: auto;
   }
 }
