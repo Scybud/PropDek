@@ -192,7 +192,7 @@ body {
 }
 
 .card {
-  background-color: var(--bg-secondary);
+  background-color: var(--card-bg);
   border: 1px solid var(--bg-accent);
   padding: 40px 32px;
   border-radius: var(--radius-md);
