@@ -140,3 +140,6 @@ div.dot-container {
     padding-top: 70px;
   }
 }
+#userEmail {
+  font-size: var(--text-sm);
+}
