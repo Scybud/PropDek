@@ -32,3 +32,9 @@ button:disabled {
   font-weight: 550;
   padding: var(--space-xs) var(--space-md);
 }
+
+.backBtn {
+  color: var(--link);
+  display: flex;
+  align-items: center;
+}

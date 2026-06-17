@@ -1,6 +1,7 @@
 //For side bar display
-const sidebar = document.getElementById("sidebar");
+const sidebar = document.querySelector(".sidebar");
 function toggleSidebar() {
+  if(!sidebar) return;
   sidebar.classList.toggle("show");
 }
 

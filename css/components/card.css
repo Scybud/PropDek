@@ -22,6 +22,7 @@
   margin: var(--space-sm) 0;
 }
 .card button {
+  font-weight: 550;
   margin-right: var(--space-sm);
   padding: 6px 14px;
   background: var(--primary);

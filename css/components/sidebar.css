@@ -31,7 +31,9 @@
   text-align: center;
 }
 
-.anchor-nav-bar {
+.anchor-nav-bar, .btn-nav-bar {
+  background: none;
+  text-align: left;
   border: none;
   display: block;
   width: 90%;
@@ -45,12 +47,12 @@
   transition: background-color 0.35s ease, transform 0.25s ease;
 }
 
-.anchor-nav-bar:hover {
+.anchor-nav-bar:hover, .btn-nav-bar:hover {
   background-color: #3c3c3c;
   transform: translateX(6px);
 }
 
-.anchor-nav-bar.active {
+.anchor-nav-bar.active, .btn-nav-bar:focus, .btn-nav-bar:active {
   background-color: #00bcd4;
   color: #000;
   font-weight: 700;
