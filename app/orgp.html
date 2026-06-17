@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Org | PropDek</title>
+    <meta
+      name="description"
+      content="PropDek helps you manage, discover, buy, and sell properties with ease. Explore listings, manage properties, and find your perfect home today."
+    />
+    <meta
+      name="keywords"
+      content="real estate, manage, property, buy, sell, rent, home, agent, PropDek"
+    />
+    <meta name="author" content="PropDek Team" />
+    <link rel="canonical" href="https://www.estatehub.com/home.html" />
+    <meta property="og:title" content="PropDek" />
+    <meta
+      property="og:description"
+      content="Discover, buy, manage and sell properties with PropDek. Your trusted real estate platform."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.estatehub.com/home.html" />
+    <meta
+      property="og:image"
+      content="https://www.estatehub.com/assets/estatehub-og-image.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PropDek - Find Your Dream Property" />
+    <meta
+      name="twitter:description"
+      content="Explore listings and connect with agents on PropDek."
+    />
+
+    <!--SCYBUD UI-->
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/variables.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/layout.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/sidebar/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/nav-buttons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/typography.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/global-buttons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/components/buttons/modals.css"
+    />
+
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components/sidebar.css">
+        <link rel="stylesheet" href="../css/components/card.css">
+      <link rel="stylesheet" href="../css/components/form.css">
+      <link rel="stylesheet" href="../css/components/buttons.css">
+<link rel="stylesheet" href="../css/components/emptyState.css">
+
+  </head>
+  <header class="header">
+      <div class="menu-icon" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <h1 class="logo">Prop<span>Dek</span></h1>
+</header>
+
+
+<aside id="sidebar" class="sidebar">
+    <div id="org-nav-bar">
+        <button class="backBtn anchor-nav-bar">
+      <span class="navIcon">
+        <!-- Back / Dashboard Icon -->
+        <svg
+  width="20"
+  height="20"
+  viewBox="0 0 20 20"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M11.75 4.25L6 10L11.75 15.75"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+</span>
+<span>
+    Back
+</span>
+</button>
+        <!--USE JS TO ADD NAV LINKS-->
+      </div>
+
+      <div class="sidebarBottom">
+          <div class="userInfo">
+
+            <div class="userInfoContent">
+              <p id="userName" class="userName text-bold">Loading...</p>
+              <p id="userEmail" class="userEmail">Loading...</p>
+            </div>
+          </div>
+
+          <button type="button" class="logoutBtn" id="logoutBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" 
+     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M15 3h4v18h-4" />
+  <path d="M10 17l5-5-5-5" />
+  <path d="M15 12H3" />
+</svg>
+</button>
+        </div>
+    </aside>
+  <body>
+    <div class="dot-container"></div>
+         <!--TOAST MESSAGES-->
+        <div id="toast"></div>
+<!--MODAL CONTAINER-->
+    <div id="modalContainer"></div>
+
+
+    <div id="app-content">
+              <div class="section-header"><h2>My organisations</h2> <button type="button" class="btn-primary btn-sm btn new-org"><svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12 5V19M5 12H19"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+New org</button></div>
+              
+      <section id="content-section">
+
+        <div id="detailsCard"></div>
+      </section>
+    </div>
+
+    <script type="module">
+      import { initOrgs } from '../js/orgs/orgs.js';
+      import { loadComponent } from "https://scybud.github.io/scybud-ui/js/ui.js";
+      import { handleOrgCreation } from "../js/create/create-org.js"
+
+      document.addEventListener("DOMContentLoaded", () => {
+          // Fire core dashboard fetch logic loops
+          initOrgs();
+
+          // Bind modal actions
+          const addPropertyBtn = document.querySelectorAll(".new-org");
+          addPropertyBtn.forEach((btn) => {
+              btn.addEventListener("click", async () => {
+                  await loadComponent(
+                      "../components/modals/create-org.html",
+                      "modalContainer"
+                  );
+                  await handleOrgCreation();
+              });
+          });
+      });
+    </script>
+
+
+<script type="module" src="../js/auth/auth.js"></script>
+<script type="module" src="../js/session.js"></script>
+<script type="module" src="../js/app.js" defer></script>
+    <script type="module" src="../js/components/nav.js" defer></script>
+    <script src="../js/components/sidebar.js" defer></script>
+  </body>
+</html>

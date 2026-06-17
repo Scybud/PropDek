@@ -1,193 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Org | PropDek</title>
-    <meta
-      name="description"
-      content="PropDek helps you manage, discover, buy, and sell properties with ease. Explore listings, manage properties, and find your perfect home today."
-    />
-    <meta
-      name="keywords"
-      content="real estate, manage, property, buy, sell, rent, home, agent, PropDek"
-    />
-    <meta name="author" content="PropDek Team" />
-    <link rel="canonical" href="https://www.estatehub.com/home.html" />
-    <meta property="og:title" content="PropDek" />
-    <meta
-      property="og:description"
-      content="Discover, buy, manage and sell properties with PropDek. Your trusted real estate platform."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.estatehub.com/home.html" />
-    <meta
-      property="og:image"
-      content="https://www.estatehub.com/assets/estatehub-og-image.jpg"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PropDek - Find Your Dream Property" />
-    <meta
-      name="twitter:description"
-      content="Explore listings and connect with agents on PropDek."
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Under Construction - EstateHub</title>
+    <style>
+        /* Base Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <!--SCYBUD UI-->
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/css/variables.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/css/layout.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/components/sidebar/sidebar.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/components/buttons/nav-buttons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/css/typography.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/components/buttons/global-buttons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://scybud.github.io/scybud-ui/components/buttons/modals.css"
-    />
+        :root {
+            --primary-color: #bababa; /* Brighter blue for dark mode visibility */
+            --primary-hover: #fffefe;
+            --dark-bg: #000000;       /* Deep slate background */
+            --card-bg: #171717;       /* Slightly lighter slate for contrast */
+            --text-main: #f8fafc;     /* Clean off-white */
+            --text-muted: #94a3b8;    /* Muted grey for descriptions */
+            --border-color: #4f4f4f;  /* Subtle dark border */
+            --scybud-accent: #2449c5; /* Scybud Modern Green */
+        }
 
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
 
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/components/sidebar.css">
-        <link rel="stylesheet" href="../css/components/card.css">
-      <link rel="stylesheet" href="../css/components/form.css">
-      <link rel="stylesheet" href="../css/components/buttons.css">
-<link rel="stylesheet" href="../css/components/emptyState.css">
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
 
-  </head>
-  <header class="header">
-      <div class="menu-icon" onclick="toggleSidebar()">
-        <span></span>
-        <span></span>
-        <span></span>
+        /* Construction Alert Hero */
+        .hero-section {
+            background: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 3rem;
+            border-top: 5px solid var(--primary-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .construction-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            letter-spacing: -0.025em;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Button */
+        .btn-dashboard {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #000000;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-dashboard:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-dashboard:active {
+            transform: translateY(0);
+        }
+
+        /* Scybud Ecosystem Section */
+.scybud-section {
+    margin-top: 1rem;
+}
+
+.scybud-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.scybud-header h2 {
+    font-size: 1.8rem;
+    color: #f8fafc;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.scybud-header h2 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.scybud-header h2 a:hover {
+    color: #10b981;
+}
+
+.scybud-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #10b981;
+    border-radius: 2px;
+}
+
+/* Balanced responsive grid layout */
+.scybud-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Product Cards styled as anchors */
+.product-card {
+    background: var(--card-bg);
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-decoration: none; /* Removes underline from links */
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    border-color: #475569;
+}
+
+/* Brand Logo Typography Badge Style */
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Unique Gradients for the Full Roster */
+.logo-trytasty { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+.logo-loghue { background: linear-gradient(135deg, #818cf8, #4f46e5); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
+.logo-rushsite { background: linear-gradient(135deg, #06b6d4, #0891b2); box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
+.logo-zefeed { background: linear-gradient(135deg, #3b82f6, #1d4ed8); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+.logo-canvart { background: linear-gradient(135deg, #f472b6, #db2777); box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); }
+.logo-htmldoc { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    color: #f8fafc;
+}
+
+.product-card h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #10b981; /* Accent styling for product type tags */
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.product-card p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+/* Link indication arrow at the bottom right of the card */
+.card-link-text {
+    font-size: 0.85rem;
+    color: #3b82f6;
+    font-weight: 600;
+    margin-top: auto; /* Pushes link text to the bottom */
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.product-card:hover .card-link-text {
+    color: #60a5fa;
+}
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .hero-section { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Under Construction Notice -->
+        <section class="hero-section">
+            <span class="construction-icon">🚧</span>
+            <h1>Under Construction</h1>
+            <p class="subtitle">We are currently crafting this section to give you the best property management experience. In the meantime, your workspace is fully operational!</p>
+            <a href="dashboard.html" class="btn-dashboard">Go to Dashboard to Add Property</a>
+        </section>
+
+       <!-- Scybud Products Showcase Section -->
+<section class="scybud-section">
+    <div class="scybud-header">
+        <h2><a href="https://abdulroqib123.github.io/Scybud-Labs/" target="_blank">The Scybud Ecosystem</a></h2>
     </div>
-    <h1 class="logo">Prop<span>Dek</span></h1>
-</header>
+    
+    <div class="scybud-grid">
+        
+        <!-- 1. TryTasty -->
+        <a href="https://trytasty.de" target="_blank" class="product-card">
+            <div class="brand-logo logo-trytasty">T</div>
+            <h3>TryTasty</h3>
+            <h4>Recipe Discovery Platform</h4>
+            <p>Helps users discover simple recipes using everyday ingredients, with a focus on accessibility, quick preparation, and easy-to-follow instructions.</p>
+            <span class="card-link-text">Visit Platform ↗</span>
+        </a>
 
+        <!-- 2. LogHue -->
+        <a href="https://loghue.com" target="_blank" class="product-card">
+            <div class="brand-logo logo-loghue">L</div>
+            <h3>LogHue</h3>
+            <h4>Productivity & Life Management</h4>
+            <p>A subscription-based platform designed for organizing tasks, goals, habits, notes, and personal engineering workflows seamlessly.</p>
+            <span class="card-link-text">Visit Platform ↗</span>
+        </a>
 
-<aside id="sidebar" class="sidebar">
-    <div id="org-nav-bar">
-        <button class="backBtn anchor-nav-bar">
-      <span class="navIcon">
-        <!-- Back / Dashboard Icon -->
-        <svg
-  width="20"
-  height="20"
-  viewBox="0 0 20 20"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M11.75 4.25L6 10L11.75 15.75"
-    stroke="currentColor"
-    stroke-width="1.6"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-</svg>
-</span>
-<span>
-    Back
-</span>
-</button>
-        <!--USE JS TO ADD NAV LINKS-->
-      </div>
+        <!-- 3. RushSite -->
+        <a href="https://rushsite.de" target="_blank" class="product-card">
+            <div class="brand-logo logo-rushsite">R</div>
+            <h3>RushSite</h3>
+            <h4>Portfolio & Resume Builder</h4>
+            <p>Enables users to create and publish professional portfolios and resumes easily without requiring web development frameworks or technical skills.</p>
+            <span class="card-link-text">Visit Platform ↗</span>
+        </a>
 
-      <div class="sidebarBottom">
-          <div class="userInfo">
+        <!-- 4. ZeFeed -->
+        <a href="https://zefeed.vercel.app" target="_blank" class="product-card">
+            <div class="brand-logo logo-zefeed">Z</div>
+            <h3>ZeFeed</h3>
+            <h4>Tech News Summary Platform</h4>
+            <p>Provides simplified technology news summaries and insights to help users stay effortlessly informed about broad industry developments.</p>
+            <span class="card-link-text">Visit Platform ↗</span>
+        </a>
 
-            <div class="userInfoContent">
-              <p id="userName" class="userName text-bold">Loading...</p>
-              <p id="userEmail" class="userEmail">Loading...</p>
-            </div>
-          </div>
+        <!-- 5. CanvArt -->
+        <a href="https://joincanvart.vercel.app" target="_blank" class="product-card">
+            <div class="brand-logo logo-canvart">C</div>
+            <h3>CanvArt</h3>
+            <h4>Creative Showcase Platform</h4>
+            <p>A relaxed space for creators to publish, explore, and showcase digital artwork, designs, custom logos, and creative projects.</p>
+            <span class="card-link-text">Visit Platform ↗</span>
+        </a>
 
-          <button type="button" class="logoutBtn" id="logoutBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" 
-     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M15 3h4v18h-4" />
-  <path d="M10 17l5-5-5-5" />
-  <path d="M15 12H3" />
-</svg>
-</button>
-        </div>
-    </aside>
-  <body>
-    <div class="dot-container"></div>
-         <!--TOAST MESSAGES-->
-        <div id="toast"></div>
-<!--MODAL CONTAINER-->
-    <div id="modalContainer"></div>
+        <!-- 6. HTML Documentation Project -->
+        <a href="https://abdulroqib123.github.io/HTML-Documentaion/" target="_blank" class="product-card">
+            <div class="brand-logo logo-htmldoc">&lt;/&gt;</div>
+            <h3>HTML Documentation</h3>
+            <h4>Web Development Resource</h4>
+            <p>A beginner-friendly HTML reference catalog designed to help people learn the fundamental building blocks of web development cleanly.</p>
+            <span class="card-link-text">View Docs ↗</span>
+        </a>
 
+    </div>
+</section>
 
-    <div id="app-content">
-              <div class="section-header"><h2>My organisations</h2> <button type="button" class="btn-primary btn-sm btn new-org"><svg
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M12 5V19M5 12H19"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-</svg>
-New org</button></div>
-              
-      <section id="content-section">
-
-        <div id="detailsCard"></div>
-      </section>
     </div>
 
-    <script type="module">
-      import { initOrgs } from '../js/orgs/orgs.js';
-      import { loadComponent } from "https://scybud.github.io/scybud-ui/js/ui.js";
-      import { handleOrgCreation } from "../js/create/create-org.js"
-
-      document.addEventListener("DOMContentLoaded", () => {
-          // Fire core dashboard fetch logic loops
-          initOrgs();
-
-          // Bind modal actions
-          const addPropertyBtn = document.querySelectorAll(".new-org");
-          addPropertyBtn.forEach((btn) => {
-              btn.addEventListener("click", async () => {
-                  await loadComponent(
-                      "../components/modals/create-org.html",
-                      "modalContainer"
-                  );
-                  await handleOrgCreation();
-              });
-          });
-      });
-    </script>
-
-
-<script type="module" src="../js/auth/auth.js"></script>
-<script type="module" src="../js/session.js"></script>
-<script type="module" src="../js/app.js" defer></script>
-    <script type="module" src="../js/components/nav.js" defer></script>
-    <script src="../js/components/sidebar.js" defer></script>
-  </body>
+</body>
 </html>
