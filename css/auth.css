@@ -46,11 +46,7 @@ main h2 {
   text-align: center;
 
 }
-.logo span {
-  background: linear-gradient(130deg, #ffae00, #fff700);
-  background-clip: text;
-  color: transparent;
-}
+
 
 /* Form Container */
 form {

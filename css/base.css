@@ -19,3 +19,9 @@ body {
   min-height: 100vh;
   color: var(--text-primary);
 }
+.logo span {
+  background: linear-gradient(130deg, #ffae00, #fff700);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
