@@ -1,4 +1,3 @@
-// js/data/propertiesDb.js
 import { supabase } from "../supabase.js";
 
 // Insert a brand new property asset
@@ -11,7 +10,7 @@ export async function insertOrg(orgPayload) {
   return data;
 }
 
-//Isert member invite to org
+// Insert member invite to org
 export async function insertOrgInvites(orgInvitePayload) {
   const { data, error } = await supabase
     .from("organization_invitations")
@@ -21,7 +20,7 @@ export async function insertOrgInvites(orgInvitePayload) {
   return data;
 }
 
-//Isert member to org
+// Insert member to org
 export async function insertOrgMember(orgMemberPayload) {
   const { data, error } = await supabase
     .from("organization_members")
@@ -31,19 +30,27 @@ export async function insertOrgMember(orgMemberPayload) {
   return data;
 }
 
-//Isert member to org
+// FETCH members of a specific org
 export async function fetchOrgMembers(orgId) {
   const { data, error } = await supabase
     .from("organization_members")
     .select("*, agents(first_name, last_name)")
-    .order("organization_id", orgId);
+    .eq("organization_id", orgId); // ✅ Filter by orgId first!
   if (error) throw error;
   return data;
 }
 
+// ✅ NEW: Delete an individual member from an organization
+export async function removeMemberFromDb(memberId) {
+  const { error } = await supabase
+    .from("organization_members")
+    .delete()
+    .eq("id", memberId); // Adjust "id" if your primary key is named differently
+  if (error) throw error;
+}
+
 // Fetch all orgs belonging to the standalone agent
 export async function fetchOrgs(agentId) {
-
   const { data, error } = await supabase
     .from("organizations")
     .select("*")
@@ -61,14 +68,25 @@ export async function removeOrgFromDb(orgId) {
   if (error) throw error;
 }
 
-
 // Fetch a single unique org row
 export async function fetchOrgById(orgId) {
-    const { data, error } = await supabase
-      .from("organizations")
-      .select("*")
-      .eq("id", orgId)
-      .single(); // Gets a single object row back instead of an array
-    if (error) throw error;
-    return data;
+  const { data, error } = await supabase
+    .from("organizations")
+    .select("*")
+    .eq("id", orgId)
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+// ✅ NEW: Update organization name (For settings panel)
+export async function updateOrgNameInDb(orgId, newName) {
+  const { data, error } = await supabase
+    .from("organizations")
+    .update({ name: newName }) // Assumes column name is "name"
+    .eq("id", orgId)
+    .select()
+    .maybeSingle();
+  if (error) throw error;
+  return data;
 }

@@ -1,0 +1,25 @@
+<div class="modal-container">
+    <form class="create-org" id="addClientForm">
+      <h2 style="margin-bottom: var(--space-xl);">Add New Client</h2>
+    <button type="button" class="closeModalBtn" onclick="document.getElementById('modalContainer').innerHTML=''">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="6" ry="6" fill="currentColor" opacity="0.06" />
+        <path d="M9 9l6 6M15 9l-6 6" />
+      </svg>
+    </button>
+
+        <label for="client-name">Client Name
+            <input type="text" id="client-name" placeholder="John Mike" required>
+        </label>
+
+        <label for="client-email">Email
+            <input type="email" id="client-email" placeholder="example@gmail.com" required >
+        </label>
+
+        <label for="client-phone">Phone
+            <input type="tel" id="client-phone" placeholder="+234 56789123" required >
+        </label>
+
+<button type="submit" class="btn submit-btn">Add Client</button>
+  </form>
+</div>

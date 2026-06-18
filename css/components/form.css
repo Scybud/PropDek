@@ -242,3 +242,6 @@ form a:hover { color: #87cfebb3; }
 .btn-add-repeater:hover {
   background: rgba(255, 230, 0, 0.08);
 }
+input:disabled {
+  opacity: 0.7;
+}
