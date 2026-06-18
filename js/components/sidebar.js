@@ -14,12 +14,13 @@ function goToLink(selectElement) {
 }
 
 // Link glows slightly when active
-const links = document.querySelectorAll(".anchor-nav-bar");
+const links = document.querySelectorAll("a .anchor-nav-bar");
 const currentPath = window.location.pathname;
 
 links.forEach((link) => {
   const linkPath = new URL(link.href).pathname;
 
+  if(!linkPath) return;
   if (currentPath === linkPath) {
     link.classList.add("active");
   }

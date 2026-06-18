@@ -3,7 +3,7 @@ import { supabase } from "../supabase.js";
 import { fetchProperties, removePropertyFromDb } from "../data/propertiesDb.js";
 import { renderOverviewStats, renderPropertyCards } from "./render.js";
 
-export async function initDashboard() {
+export async function initDashboard(orgId) {
 
   try {
     const {
@@ -14,17 +14,17 @@ export async function initDashboard() {
       return;
     }
 
-    const orgId = user.user_metadata?.organization_id || null;
-    const properties = await fetchProperties(user.id, orgId);
+    const userOrgId = orgId || null;
+    const properties = await fetchProperties(user.id, userOrgId);
 
     renderOverviewStats(properties);
     renderPropertyCards(properties, async (id) => {
       if (confirm("Are you sure you want to delete this asset row?")) {
         await removePropertyFromDb(id);
         // Reload dashboard rows locally down pipeline
-        initDashboard();
+        initDashboard(orgId);
       }
-    });
+    }, orgId);
   } catch (error) {
     console.error("Dashboard error:", error.message);
   } 

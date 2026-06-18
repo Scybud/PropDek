@@ -1,7 +1,6 @@
 import { handleBackBtn } from "https://scybud.github.io/scybud-ui/js/ui.js";
 
 const navBar = document.getElementById("nav-bar");
-const orgNavBar = document.getElementById("org-nav-bar");
 
 const loadPageNavs = () => {
   if (!navBar) return;
@@ -23,27 +22,4 @@ const loadPageNavs = () => {
 };
 loadPageNavs();
 
-//Org Page Navs
-const loadOrgNavs = () => {
-  if (!orgNavBar) return;
-
-  const btns = [
-    { text: "Assets", onClick: "" },
-    { text: "Members", onClick: "" },
-    { text: "Clients", onClick: "" },
-    { text: "Settings", onClick: "" },
-  ];
-
-  btns.forEach((btn) => {
-    const navBtn = document.createElement("button");
-    navBtn.classList.add("btn-nav-bar");
-    navBtn.textContent = btn.text;
-    navBtn.onclick = btn.onClick;
-
-    orgNavBar.appendChild(navBtn);
-  });
-};
-loadOrgNavs();
-
-
-handleBackBtn()
+handleBackBtn();

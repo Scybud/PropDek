@@ -5,6 +5,7 @@
  */
       import { loadComponent, createEmptyState } from "https://scybud.github.io/scybud-ui/js/ui.js";
 import { handleOrgCreation } from "../create/create-org.js"; 
+import { handleMemberInvite } from "../create/add-member.js";
 
 export async function renderOrgsCards(orgsArray, onDeleteClick) {
   const detailsCard = document.getElementById("detailsCard");
@@ -51,8 +52,8 @@ export async function renderOrgsCards(orgsArray, onDeleteClick) {
           <span class="status-badge ${statusBadgeClass}">${org.is_verified ? "Verified" : "Not verified"}</span>
       </p>
       <div style="margin-top: 15px; display: flex; gap: 8px;">
-          <button type="button" class="action-view-btn view-btn">Open</button>
-          <button type="button" class="danger delete-btn" style="background: #ff4444; color: white;">🗑 Delete</button>
+          <a href="org.html?org=${org.id}" type="button" class="action-view-btn btn view-btn">Open</a>
+          <button type="button" class="danger btn delete-btn" style="background: #ff4444; color: white;">🗑 Delete</button>
       </div>
     `;
 
@@ -71,4 +72,58 @@ export async function renderOrgsCards(orgsArray, onDeleteClick) {
 
   // FIXED: Prepend the fully populated grid layout container into the main DOM target
   detailsCard.prepend(twoColumnGrid);
+}
+
+export async function renderMembersCards(membersArray, onDeleteClick, userId, orgId) {
+  const container = document.getElementById("container");
+  if (!container) return;
+
+  if (membersArray.length === 0) {
+    await createEmptyState({
+      container: container,
+      icon: "👥",
+      title: "Nothing here yet",
+      description: "You have not added a member yet.",
+      actionText: "Add member",
+      onAction: async () => {
+        await loadComponent(
+          "../components/modals/invite-member.html",
+          "modalContainer",
+        );
+        await handleMemberInvite(fetchOrgById, userId);
+      },
+    });
+    return;
+  }
+
+
+  // FIXED: Create ONE single grid container OUTSIDE the loop
+  const twoColumnGrid = document.createElement("div");
+  twoColumnGrid.classList.add("two-column-grid");
+
+  membersArray.forEach((mbr) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+
+    cardDiv.innerHTML = `
+      <h3>${mbr.agents.first_name + " " + mbr.agents.last_name || "Unknown member"}</h3>
+      <p>
+          <b>Role:</b> 
+          <span class="role-badge ${mbr.role}">${mbr.role}</span>
+      </p>
+      <div style="margin-top: 15px; display: flex; gap: 8px;">
+          <button type="button" class="danger btn delete-btn" style="background: #ff4444; color: white;">🗑 Remove</button>
+      </div>
+    `;
+
+    cardDiv.querySelector(".delete-btn").addEventListener("click", () => {
+      onDeleteClick(mbr.id);
+    });
+
+    // Append each individual card into the single parent grid container
+    twoColumnGrid.appendChild(cardDiv);
+  });
+
+  // FIXED: Prepend the fully populated grid layout container into the main DOM target
+  container.append(twoColumnGrid);
 }

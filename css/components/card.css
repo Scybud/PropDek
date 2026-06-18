@@ -21,7 +21,7 @@
 .card p {
   margin: var(--space-sm) 0;
 }
-.card button {
+.card .btn {
   font-weight: 550;
   margin-right: var(--space-sm);
   padding: 6px 14px;
@@ -33,17 +33,17 @@
   transition: 0.3s;
 }
 
-.card button:hover {
+.card .btn:hover {
   color: #fdfdfd;
   background: var(--hover-bg);
 }
 
-.status-badge {
+.status-badge, .role-badge {
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 600;
 }
 .status-badge.for-sale, .not-verified { background: rgba(255, 174, 0, 0.15); color: #ffae00; }
-.status-badge.rented, .verified { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
-.status-badge.leased { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.status-badge.rented, .verified, .owner { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.status-badge.leased, .member { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }

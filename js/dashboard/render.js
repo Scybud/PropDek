@@ -23,8 +23,8 @@ export function renderOverviewStats(propertiesArray) {
   availablePropertyCount.innerText = available;
 }
 
-export async function renderPropertyCards(propertiesArray, onDeleteClick) {
-  const detailsCard = document.getElementById("detailsCard");
+export async function renderPropertyCards(propertiesArray, onDeleteClick, orgId) {
+  const detailsCard = document.getElementById("container");
   if (!detailsCard) return;
 
   if (propertiesArray.length === 0) {
@@ -39,7 +39,8 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick) {
           "../components/modals/add-property.html",
           "modalContainer",
         );
-        await handleFormSteps();
+        await handleFormSteps(orgId);
+
       },
     });
     return;
@@ -86,8 +87,8 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick) {
       </p>
       <p><b>Rent Valuation:</b> ₦${Number(property.list_price || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</p>
       <div style="margin-top: 15px; display: flex; gap: 8px;">
-          <button type="button" class="action-view-btn view-btn">👀 View</button>
-          <button type="button" class="danger delete-btn" style="background: #ff4444; color: white;">🗑 Remove</button>
+          <button type="button" class="action-view-btn btn view-btn">👀 View</button>
+          <button type="button" class="danger btn delete-btn" style="background: #ff4444; color: white;">🗑 Remove</button>
       </div>
     `;
 

@@ -70,6 +70,7 @@
       <link rel="stylesheet" href="../css/components/form.css">
       <link rel="stylesheet" href="../css/components/buttons.css">
 <link rel="stylesheet" href="../css/components/emptyState.css">
+<link rel="stylesheet" href="../css/components/toast.css">
 
 <!--FAVICONS-->
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
@@ -141,50 +142,15 @@
 
 
     <div id="app-content">
-              <div class="section-header"><h2>My organisations</h2> <button type="button" class="btn-primary btn-sm btn new-org"><svg
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M12 5V19M5 12H19"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-</svg>
-New org</button></div>
-              
+          
       <section id="content-section">
 
-        <div id="detailsCard"></div>
+        <div id="container"></div>
       </section>
     </div>
 
     <script type="module">
-      import { initOrgs } from '../js/orgs/orgs.js';
-      import { loadComponent } from "https://scybud.github.io/scybud-ui/js/ui.js";
-      import { handleOrgCreation } from "../js/create/create-org.js"
 
-      document.addEventListener("DOMContentLoaded", () => {
-          // Fire core dashboard fetch logic loops
-          initOrgs();
-
-          // Bind modal actions
-          const addPropertyBtn = document.querySelectorAll(".new-org");
-          addPropertyBtn.forEach((btn) => {
-              btn.addEventListener("click", async () => {
-                  await loadComponent(
-                      "../components/modals/create-org.html",
-                      "modalContainer"
-                  );
-                  await handleOrgCreation();
-              });
-          });
-      });
     </script>
 
 
@@ -193,5 +159,6 @@ New org</button></div>
 <script type="module" src="../js/app.js" defer></script>
     <script type="module" src="../js/components/nav.js" defer></script>
     <script src="../js/components/sidebar.js" defer></script>
+    <script type="module" src="../js/orgs/org.js" defer></script>
   </body>
 </html>

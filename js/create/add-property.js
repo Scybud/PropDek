@@ -2,7 +2,8 @@
 import { insertProperty } from "../data/propertiesDb.js";
 import { supabase } from "../supabase.js";
 
-export async function handleFormSteps() {
+export async function handleFormSteps(orgId) {
+  
   const form = document.getElementById("propertyForm");
   const steps = document.querySelectorAll(".form-step");
   const dots = document.querySelectorAll(".step-dot");
@@ -14,7 +15,7 @@ export async function handleFormSteps() {
 
   let currentStep = 1;
   let unitCount = 0;
-
+  
   function updateFormState() {
     steps.forEach((step) => {
       step.classList.toggle(
@@ -197,8 +198,7 @@ export async function handleFormSteps() {
       if (!user) throw new Error("No active session tracked.");
 
       propertyPayload.agent_id = user.id;
-      propertyPayload.organization_id =
-        user.user_metadata?.organization_id || null;
+      propertyPayload.organization_id = orgId || null;
 
       await insertProperty(propertyPayload);
       window.location.href = "dashboard.html";

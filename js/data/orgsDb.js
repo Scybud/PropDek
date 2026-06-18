@@ -11,6 +11,16 @@ export async function insertOrg(orgPayload) {
   return data;
 }
 
+//Isert member invite to org
+export async function insertOrgInvites(orgInvitePayload) {
+  const { data, error } = await supabase
+    .from("organization_invitations")
+    .insert([orgInvitePayload])
+    .select();
+  if (error) throw error;
+  return data;
+}
+
 //Isert member to org
 export async function insertOrgMember(orgMemberPayload) {
   const { data, error } = await supabase
@@ -21,7 +31,17 @@ export async function insertOrgMember(orgMemberPayload) {
   return data;
 }
 
-// Fetch all properties belonging to the active organization or standalone agent
+//Isert member to org
+export async function fetchOrgMembers(orgId) {
+  const { data, error } = await supabase
+    .from("organization_members")
+    .select("*, agents(first_name, last_name)")
+    .order("organization_id", orgId);
+  if (error) throw error;
+  return data;
+}
+
+// Fetch all orgs belonging to the standalone agent
 export async function fetchOrgs(agentId) {
 
   const { data, error } = await supabase
@@ -32,7 +52,7 @@ export async function fetchOrgs(agentId) {
   return data;
 }
 
-// Delete property asset row
+// Delete org row
 export async function removeOrgFromDb(orgId) {
   const { error } = await supabase
     .from("organizations")
@@ -42,7 +62,7 @@ export async function removeOrgFromDb(orgId) {
 }
 
 
-// Fetch a single unique property profile row
+// Fetch a single unique org row
 export async function fetchOrgById(orgId) {
     const { data, error } = await supabase
       .from("organizations")
