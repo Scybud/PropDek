@@ -107,7 +107,7 @@ export async function loadAssets(userId, orgId) {
   if (addPropertyBtn) {
     addPropertyBtn.addEventListener("click", async () => {
       await loadComponent(
-        "../components/modals/add-property.html",
+        "../components/modals/create/add-property.html",
         "modalContainer",
       );
       await handleFormSteps(orgId);
@@ -150,7 +150,7 @@ export async function loadMembers(userId, orgId) {
   if (inviteMemberBtn) {
     inviteMemberBtn.addEventListener("click", async () => {
       await loadComponent(
-        "../components/modals/invite-member.html",
+        "../components/modals/create/invite-member.html",
         "modalContainer",
       );
       await handleMemberInvite(userId, orgId);
@@ -193,7 +193,7 @@ export async function loadClients(userId, orgId) {
   const addClientBtn = document.querySelector(".add-client");
   if (addClientBtn) {
     addClientBtn.addEventListener("click", async () => {
-      await loadComponent("../components/modals/add-client.html", "modalContainer");
+      await loadComponent("../components/modals/create/add-client.html", "modalContainer");
       await handleClientSubmit(userId, orgId, () => {
         loadClients(userId, orgId);
       });

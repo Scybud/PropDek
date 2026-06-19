@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     addProperty.forEach((btn) => {
         btn.addEventListener("click", async() => {
             await loadComponent(
-              "../components/modals/add-property.html",
+              "../components/modals/create/add-property.html",
               "modalContainer",
             );
 

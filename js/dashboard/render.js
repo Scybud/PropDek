@@ -36,7 +36,7 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick, orgId)
       actionText: "Add Property",
       onAction: async () => {
         await loadComponent(
-          "../components/modals/add-property.html",
+          "../components/modals/create/add-property.html",
           "modalContainer",
         );
         await handleFormSteps(orgId);
