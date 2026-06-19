@@ -5,6 +5,7 @@
  */
       import { loadComponent, createEmptyState } from "https://scybud.github.io/scybud-ui/js/ui.js";
 import { handleFormSteps } from "../create/add-property.js";
+import { escapeHTML } from "../utils/escapeHTML.js";
 
 export function renderOverviewStats(propertiesArray) {
   const rentedPropertyCount = document.getElementById("rentedPropertyCount");
@@ -28,6 +29,9 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick, orgId)
   if (!detailsCard) return;
 
   if (propertiesArray.length === 0) {
+    detailsCard.innerHTML = "";
+
+    
     await createEmptyState({
       container: detailsCard,
       icon: "🏠",
@@ -73,12 +77,12 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick, orgId)
       : "N/A";
 
     cardDiv.innerHTML = `
-      <h3>${property.owner_name || "Client Asset"}</h3>
-      <p><b>Title:</b> ${property.title || "Untitled Asset"}</p>
-      <p><b>Property Type:</b> ${property.property_type || "Unspecified"}</p>
+      <h3>${escapeHTML(property.owner_name) || "Client Asset"}</h3>
+      <p><b>Title:</b> ${escapeHTML(property.title) || "Untitled Asset"}</p>
+      <p><b>Property Type:</b> ${escapeHTML(property.property_type) || "Unspecified"}</p>
       <p>
           <b>Property Status:</b> 
-          <span class="status-badge ${statusBadgeClass}">${property.status || "available"}</span>
+          <span class="status-badge ${statusBadgeClass}">${escapeHTML(property.status) || "available"}</span>
       </p>
       <p><b>Specs:</b> 🛏️ ${beds} Beds | 🛁 ${baths} Baths | 📐 ${size}</p>
       <p>

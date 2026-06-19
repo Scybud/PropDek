@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!orgNavBar) return;
 
     const btns = [
-      { text: "Assets", onClick: async () => await loadAssets(userId, orgId) },
+      { text: "Org Assets", onClick: async () => await loadAssets(userId, orgId) },
       {
         text: "Members",
         onClick: async () => await loadMembers(userId, orgId),

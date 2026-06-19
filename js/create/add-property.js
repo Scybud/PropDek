@@ -1,9 +1,10 @@
 // js/create/add-property.js
 import { insertProperty } from "../data/propertiesDb.js";
 import { supabase } from "../supabase.js";
+import {toastMsg} from "../components/toast.js"
+
 
 export async function handleFormSteps(orgId) {
-  
   const form = document.getElementById("propertyForm");
   const steps = document.querySelectorAll(".form-step");
   const dots = document.querySelectorAll(".step-dot");
@@ -15,7 +16,7 @@ export async function handleFormSteps(orgId) {
 
   let currentStep = 1;
   let unitCount = 0;
-  
+
   function updateFormState() {
     steps.forEach((step) => {
       step.classList.toggle(
@@ -28,10 +29,73 @@ export async function handleFormSteps(orgId) {
     });
   }
 
+  // --- Map Verification Logic ---
+  async function verifyPropertyAddressOnMap() {
+    const address = document.getElementById("address").value.trim();
+    const neighborhood = document.getElementById("neighborhood").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value.trim();
+    const country = "Nigeria";
+
+    const latInput = document.getElementById("latitude");
+    const lonInput = document.getElementById("longitude");
+
+    // 1. Check if the main street address exists on the map
+    const addressQuery = `${address}, ${city}, ${state}, ${country}`;
+    try {
+      let response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(addressQuery)}&limit=1`,
+      );
+      let data = await response.json();
+
+      if (data && data.length > 0) {
+        // Main address found! Extract and save coordinates for this property
+        if (latInput) latInput.value = parseFloat(data[0].lat).toFixed(6);
+        if (lonInput) lonInput.value = parseFloat(data[0].lon).toFixed(6);
+        return true;
+      }
+
+      // 2. Main address doesn't exist -> Fallback to Neighborhood validation
+      if (!neighborhood) {
+        toastMsg(
+          "The address isn't found on the map. Please add a neighborhood for an approximate location.", "error"
+        );
+        document.getElementById("neighborhood").focus();
+        return false;
+      }
+
+      const neighborhoodQuery = `${neighborhood}, ${city}, ${state}, ${country}`;
+      response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(neighborhoodQuery)}&limit=1`,
+      );
+      data = await response.json();
+
+      if (data && data.length > 0) {
+        // Neighborhood fallback matches! Store the fallback approximate coordinates
+        if (latInput) latInput.value = parseFloat(data[0].lat).toFixed(6);
+        if (lonInput) lonInput.value = parseFloat(data[0].lon).toFixed(6);
+        toastMsg(
+          `Exact address not found on map. Pinning approximate location using neighborhood: "${neighborhood}".`, "warning"
+        );
+        return true;
+      } else {
+        toastMsg(
+          "Neither the address nor the neighborhood could be located on the map. Please verify your spelling.", "error"
+        );
+        return false;
+      }
+    } catch (error) {
+      console.error("Map verification failed:", error);
+      // Fallback: system issue shouldn't block user forever, but let's warn them
+      return true;
+    }
+  }
+
   nextButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const currentFields =
-        steps[currentStep - 1].querySelectorAll("[required]");
+    btn.addEventListener("click", async () => {
+      const currentStepElement = steps[currentStep - 1];
+      const currentFields = currentStepElement.querySelectorAll("[required]");
+
       let allValid = true;
       currentFields.forEach((field) => {
         if (!field.checkValidity()) {
@@ -39,9 +103,31 @@ export async function handleFormSteps(orgId) {
           allValid = false;
         }
       });
-      if (allValid && currentStep < steps.length) {
-        currentStep++;
-        updateFormState();
+
+      if (allValid) {
+        // --- SAFE DETECTION WAY ---
+        // Instead of parsing numbers, we verify if the address field is sitting inside our active container view.
+        const addressField = document.getElementById("address");
+        if (addressField && currentStepElement.contains(addressField)) {
+          const originalText = btn.innerText;
+          btn.innerText = "Verifying Map Placement...";
+          btn.disabled = true;
+
+          const addressIsValidOnMap = await verifyPropertyAddressOnMap();
+
+          btn.innerText = originalText;
+          btn.disabled = false;
+
+          // If validation fails requirements, stop right here and block moving to step 6
+          if (!addressIsValidOnMap) {
+            return;
+          }
+        }
+
+        if (currentStep < steps.length) {
+          currentStep++;
+          updateFormState();
+        }
       }
     });
   });
@@ -59,7 +145,7 @@ export async function handleFormSteps(orgId) {
     getLocationBtn.addEventListener("click", () => {
       getLocationBtn.innerText = "Locating Coordinates...";
       if (!navigator.geolocation) {
-        alert("Geolocation unsupported by browser environment.");
+        toastMsg("Geolocation unsupported by browser environment.", "error");
         getLocationBtn.innerText = "📍 Auto-Detect GPS Coordinates";
         return;
       }
@@ -73,7 +159,7 @@ export async function handleFormSteps(orgId) {
         },
         (err) => {
           console.error(err);
-          alert(`Telemetry sync failed: ${err.message}`);
+          toastMsg(`Telemetry sync failed: ${err.message}`, "error");
           getLocationBtn.innerText = "📍 Auto-Detect GPS Coordinates";
         },
       );
@@ -139,17 +225,14 @@ export async function handleFormSteps(orgId) {
     };
 
     const propertyPayload = {
-      // Step 1: Core Fields
       title: document.getElementById("title").value.trim(),
       owner_name: document.getElementById("owner_name").value.trim(),
       description: document.getElementById("description").value.trim() || null,
 
-      // Step 2: Classifications
       property_type: document.getElementById("property_type").value || null,
       status: document.getElementById("status").value || null,
       year_built: parseIntNum("year_built"),
 
-      // Step 3: Structural/Physical Attributes
       bedrooms: parseIntNum("bedrooms"),
       bathrooms: parseIntNum("bathrooms"),
       total_rooms: parseIntNum("total_rooms"),
@@ -157,7 +240,6 @@ export async function handleFormSteps(orgId) {
       lot_size_sqm: parseNum("lot_size_sqm"),
       parking_spaces: parseIntNum("parking_spaces"),
 
-      // Step 5: Location Details
       address: document.getElementById("address").value.trim(),
       city: document.getElementById("city").value.trim(),
       state: document.getElementById("state").value.trim(),
@@ -168,7 +250,6 @@ export async function handleFormSteps(orgId) {
       latitude: parseNum("latitude"),
       longitude: parseNum("longitude"),
 
-      // Step 6: Financial Columns
       list_price:
         parseFloat(document.getElementById("list_price").value) || 0.0,
       period: document.getElementById("period").value || null,
@@ -178,7 +259,6 @@ export async function handleFormSteps(orgId) {
       association_fees_monthly: parseNum("association_fees_monthly"),
       currency: "NGN",
 
-      // Step 4: Sub-unit Manifest Array
       internal_units_json: unitsContainer
         ? Array.from(unitsContainer.querySelectorAll(".unit-card")).map(
             (card) => ({
@@ -204,7 +284,7 @@ export async function handleFormSteps(orgId) {
       window.location.href = "dashboard.html";
     } catch (err) {
       console.error(err);
-      alert(`Publishing aborted: ${err.message}`);
+      toastMsg(`Publishing aborted: ${err.message}`, "error");
     }
   });
 }
