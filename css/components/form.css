@@ -88,21 +88,7 @@ legend {
   font-size: 1.2rem;
 }
 
-/* Action Buttons System */
-button, .submit-btn, .btn-next, .btn-prev {
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #ffe600, #ffad00);
-  cursor: pointer;
-  color: #000;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
 
-button:hover {
-  transform: translateY(-2px);
-}
 
 /* Wizard Visibility Rules */
 .form-step {

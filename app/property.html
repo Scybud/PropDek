@@ -51,12 +51,13 @@
       /* Title */
       h2 {
         font-weight: 600;
-        margin-bottom: 20px;
+        margin: var(--space-xl) 0 0;
         text-align: center;
       }
 
       /* Card Container */
       #details {
+        margin-top: var(--space-xl);
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid rgba(255, 230, 0, 0.2);
         padding: 25px;
@@ -124,16 +125,13 @@
 
       /* Back Button */
       .btn {
-        text-decoration: none;
-        margin-top: 25px;
+        position: fixed;
+        left: var(--space-lg);
+
         padding: 12px 25px;
-        border-radius: 8px;
-        font-size: 1rem;
+        border-radius: var(--radius-sm);
         border: none;
-        background: linear-gradient(90deg, #ffe600, #ffad00);
         color: #000;
-        font-weight: 600;
-        cursor: pointer;
         transition: transform 0.25s, box-shadow 0.25s;
       }
 
@@ -208,13 +206,13 @@
     </style>
   </head>
   <body>
+    <button type="button" class="btn backBtn btn-sm">← Back</button>
     <h2>Property Details</h2>
 
     <div id="details">
       <p class="loading-text">Fetching live database record...</p>
     </div>
 
-    <a class="btn" href="dashboard.html">← Back to Dashboard</a>
 
     <script type="module" src="../js/session.js"></script>
 <script type="module" src="../js/app.js"></script>

@@ -16,6 +16,18 @@
   width: 30px;
   height: 30px;
 }
+
+/* Action Buttons System */
+button, .submit-btn, .btn-next, .btn-prev, .btn {
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  background: var(--primary);
+  cursor: pointer;
+  color: #000;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
 button:hover {
   transform: translate(0);
 }
