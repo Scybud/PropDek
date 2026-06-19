@@ -8,7 +8,7 @@
   justify-content: space-evenly;
   align-items: center;
   width: auto;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .statsCard {
@@ -88,6 +88,7 @@ footer {
   
 
   #statsCards {
+    margin-top: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-sm);
