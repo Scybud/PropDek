@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p><strong>Listing Status:</strong> ${escapeHTML(property.status || "available")}</p>
             <p><strong>Valuation/Rent:</strong> ₦${formattedPrice} (${escapeHTML(property.period)})</p>
             <p><strong>Lease Expiry:</strong> ${expiryDate}</p>
-            <p><strong>Database ID:</strong> <code style="color: #cbd5e1; font-family: monospace; font-size: 0.8rem;">${escapeHTML(property.id)}</code></p>
+            <p><strong>Asset ID:</strong> <code style="color: #cbd5e1; font-family: monospace; font-size: 0.8rem;">${escapeHTML(property.id)}</code></p>
             <p><strong>Internal Description / Notes:</strong><br>${escapeHTML(property.description || "No descriptions saved for this asset.")}</p>
         `;
 
@@ -66,6 +66,41 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
     }
 
+    // --- HIGH-FIDELITY GOOGLE MAPS INJECTION ---
+    if (property.latitude && property.longitude) {
+      const lat = parseFloat(property.latitude);
+      const lon = parseFloat(property.longitude);
+
+      detailsHTML += `
+                <div class="map-section">
+                    <div class="map-header-row">
+                        <h4>Location Tracking</h4>
+                                                                <p style="font-size: 0.85rem; color: #a0aec0; font-style: italic;">Approximate location based on address given.</p>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" 
+                           target="_blank" 
+                           class="btn-nav">
+                           🚗 Open in Google Maps
+                        </a>
+                    </div>
+                    <div class="map-frame-wrapper">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed"
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            `;
+    } else {
+      detailsHTML += `
+                <div class="map-section">
+                    <h4>Location Tracking</h4>
+                    <p style="font-size: 0.85rem; color: #a0aec0; font-style: italic;">No verified GPS coordinates linked to this asset profile.</p>
+                </div>
+            `;
+    }
+
     detailsDiv.innerHTML = detailsHTML;
   } catch (err) {
     console.error("Failed to load building overview profile:", err.message);
@@ -76,17 +111,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 // XSS Prevention sanitizer
 function escapeHTML(str) {
   if (!str) return "";
-  return str
-    .toString()
-    .replace(
-      /[&<>'"]/g,
-      (tag) =>
-        ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          "'": "&#39;",
-          '"': "&quot;",
-        })[tag] || tag,
-    );
+  return str.toString().replace(
+    /[&<>'"]/g,
+    (tag) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;",
+      })[tag] || tag,
+  );
 }

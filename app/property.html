@@ -5,6 +5,25 @@
     <meta charset="UTF-8" />
     <title>Property Details | PropDek</title>
 
+    <!--SCYBUD UI-->
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/variables.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/layout.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://scybud.github.io/scybud-ui/css/typography.css"
+    />
+
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
+      <link rel="stylesheet" href="../css/components/buttons.css">
+
     <!--FAVICONS-->
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
@@ -20,14 +39,12 @@
 
       /* Page Styling */
       body {
-        background: linear-gradient(180deg, #0a0a0a, #252525);
         min-height: 100vh;
         width: 100%;
         font-family: "Poppins", Arial, sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: #fff;
         padding: 30px 15px;
       }
 
@@ -53,10 +70,7 @@
         backdrop-filter: blur(6px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         animation: fadeIn 0.4s ease-in-out;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
+          }
 
       /* Typography */
       #details h3 {
@@ -149,6 +163,52 @@
           transform: translateY(0);
         }
       }
+
+      /* Expanded max width to hold text and map gracefully side-by-side or stacked */
+  #details {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 230, 0, 0.2);
+    padding: 25px;
+    width: 100%;
+    max-width: 650px; /* Slight size bump for map layouts */
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Map Container Placement styling */
+  .map-section {
+    margin-top: 15px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+  }
+
+  .map-section h4 {
+    color: #ffe600;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .map-frame-wrapper {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #151515;
+  }
+
+  .map-frame-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Optional sleek dark layout filter blend to match your theme perfectly */
+    filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  }
     </style>
   </head>
   <body>
