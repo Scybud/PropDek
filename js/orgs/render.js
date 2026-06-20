@@ -43,31 +43,27 @@ export async function renderOrgsCards(orgsArray, onDeleteClick) {
   twoColumnGrid.classList.add("two-column-grid");
 
   orgsArray.forEach((org) => {
-    const cardDiv = document.createElement("div");
-    cardDiv.classList.add("card");
+   const cardDiv = document.createElement("div");
+   cardDiv.classList.add("card");
 
-        let statusBadgeClass = "not-verified";
-        if (org.is_verified === false)
-          statusBadgeClass = "not-verified";
-        if (org.is_verified === true)
-          statusBadgeClass = "verified";
+   // Clean ternary to determine the badge class
+   const statusBadgeClass = org.is_verified ? "verified" : "not-verified";
+   const statusText = org.is_verified ? "Verified" : "Not verified";
 
-    cardDiv.innerHTML = `
-      <h3>${org.name || "Your Asset"}</h3>
-      <p>
-          <b>org Status:</b> 
-          <span class="status-badge ${statusBadgeClass}">${org.is_verified ? "Verified" : "Not verified"}</span>
-      </p>
-      <div style="margin-top: 15px; display: flex; gap: 8px;">
-          <a href="org.html?org=${org.id}" type="button" class="action-view-btn btn view-btn">Open</a>
-          <button type="button" class="danger btn delete-btn" style="background: #ff4444; color: white;">🗑 Delete</button>
-      </div>
-    `;
+   cardDiv.innerHTML = `
+  <h3>${org.name ?? "Your Asset"}</h3>
+  
+  <p>
+    <b>Org Status:</b> 
+    <span class="status-badge ${statusBadgeClass}">${statusText}</span>
+  </p>
+  
+  <div class="card-actions">
+    <a href="org.html?org=${org.id}" class="btn action-view-btn view-btn">Open</a>
+    <button type="button" class="btn delete-btn">🗑 Delete</button>
+  </div>
+`;
 
-    cardDiv.querySelector(".view-btn").addEventListener("click", () => {
-      localStorage.setItem("viewOrgId", org.id);
-      window.location.href = "org.html";
-    });
 
     cardDiv.querySelector(".delete-btn").addEventListener("click", () => {
       onDeleteClick(org.id);
@@ -139,7 +135,7 @@ export async function renderMembersCards(membersArray, onDeleteClick, userId, or
 /**
  * Renders the corporate clients grid dynamically into the main container
  */
-export async function renderClientsCards(clientsData, onDeleteCallback, userId, orgId) {
+export async function renderClientsCards(clientsData, onDeleteCallback, loadClients, userId, orgId) {
   const container = document.getElementById("container");
   if (!container) return;
 
@@ -156,8 +152,8 @@ export async function renderClientsCards(clientsData, onDeleteCallback, userId, 
           "../components/modals/create/add-client.html",
           "modalContainer",
         );
-        await handleClientSubmit(userId, orgId, () => {
-          loadClients(userId, orgId);
+        await handleClientSubmit(userId, orgId, async () => {
+         await loadClients(userId, orgId);
         });
       },
     });

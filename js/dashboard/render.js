@@ -90,9 +90,9 @@ export async function renderPropertyCards(propertiesArray, onDeleteClick, orgId)
           <span class="unit-counter-badge">${totalUnitsCount} Units</span>
       </p>
       <p><b>Rent Valuation:</b> ₦${Number(property.list_price || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</p>
-      <div style="margin-top: 15px; display: flex; gap: 8px;">
+      <div class="card-actions">
           <button type="button" class="action-view-btn btn view-btn">👀 View</button>
-          <button type="button" class="danger btn delete-btn" style="background: #ff4444; color: white;">🗑 Remove</button>
+          <button type="button" class="danger btn delete-btn">🗑 Remove</button>
       </div>
     `;
 

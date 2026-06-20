@@ -211,6 +211,7 @@ export async function loadClients(userId, orgId) {
         loadClients(userId, orgId);
       }
     },
+    loadClients,
     userId,
     orgId
   );
