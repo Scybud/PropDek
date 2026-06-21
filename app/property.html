@@ -176,6 +176,7 @@
 
   /* Map Container Placement styling */
   .map-section {
+    position: relative;
     margin-top: 15px;
     border-top: 1px dashed rgba(255, 255, 255, 0.1);
     padding-top: 15px;
@@ -186,7 +187,11 @@
     font-size: 1.1rem;
     margin-bottom: 10px;
   }
-
+.expand-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
   .map-frame-wrapper {
     width: 100%;
     height: 250px;
@@ -203,9 +208,46 @@
     /* Optional sleek dark layout filter blend to match your theme perfectly */
     filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
   }
+
+  .map-modal-card {
+    width: 90%;
+    height: 90%;
+    padding: var(--space-xl);
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    .map-modal-card {
+    width: 100%;
+    padding: var(--space-sm);
+  }
+  }
+  .expanded-map-frame-wrapper {
+     width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #151515;
+  }
+  .expanded-map-frame-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #151515;
+  }
     </style>
   </head>
   <body>
+
+    <!--TOAST MESSAGES-->
+        <div id="toast"></div>
+<!--MODAL CONTAINER-->
+    <div id="modalContainer"></div>
+
+
     <button type="button" class="btn backBtn btn-sm">← Back</button>
     <h2>Property Details</h2>
 

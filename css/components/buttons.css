@@ -72,6 +72,33 @@ button:disabled {
 .btn.delete-btn:hover {
     background-color: #ff4444;
 }
+
+.expand-btn {
+  background: #111;
+  border: 1px solid #222;
+  padding: var(--space-sm);
+  margin: var(--space-sm);
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.expand-btn:hover {
+  background: #1a1a1a;
+  border-color: #333;
+}
+
+.expand-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.expand-btn.active svg {
+  transform: scale(1.15);
+}
+
 /* Status Badges */
 .status-badge {
   padding: 2px 6px;

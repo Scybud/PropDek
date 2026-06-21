@@ -67,9 +67,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // --- HIGH-FIDELITY GOOGLE MAPS INJECTION ---
+    let lat = null;
+let lon = null;
+
     if (property.latitude && property.longitude) {
-      const lat = parseFloat(property.latitude);
-      const lon = parseFloat(property.longitude);
+       lat = parseFloat(property.latitude);
+       lon = parseFloat(property.longitude);
 
       detailsHTML += `
                 <div class="map-section">
@@ -82,6 +85,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                            class="btn-nav">
                            🚗 Open in Google Maps
                         </a>
+
+<button class="expand-btn" id="openMapModal">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+  <path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
+</button>
+
                     </div>
                     <div class="map-frame-wrapper">
                         <iframe 
@@ -102,11 +113,53 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     detailsDiv.innerHTML = detailsHTML;
+
+    // Attach modal logic AFTER HTML is injected
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("#openMapModal");
+      if (!btn) return;
+
+      // Build modal dynamically
+      const modalHTML = `
+    <div class="modal-container">
+      <div class="map-modal-card">
+        <button type="button" class="closeModalBtn" id="closeMapModal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" 
+               viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="3.5" width="17" height="17" rx="6" ry="6" 
+                  fill="currentColor" opacity="0.06" />
+            <path d="M9 9l6 6M15 9l-6 6" />
+          </svg>
+        </button>
+
+        <div class="expanded-map-frame-wrapper">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed"
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+      </div>
+    </div>
+  `;
+
+      document.getElementById("modalContainer").innerHTML = modalHTML;
+    });
+
+    // Close modal
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("#closeMapModal")) {
+        document.getElementById("modalContainer").innerHTML = "";
+      }
+    });
+
   } catch (err) {
     console.error("Failed to load building overview profile:", err.message);
     detailsDiv.innerHTML = `<p style="text-align:center; color:#ef4444;">Error fetching data: ${escapeHTML(err.message)}</p>`;
   }
 });
+
 
 // XSS Prevention sanitizer
 function escapeHTML(str) {
