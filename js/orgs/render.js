@@ -115,7 +115,7 @@ export async function renderMembersCards(membersArray, onDeleteClick, userId, or
           <span class="role-badge ${mbr.role}">${mbr.role}</span>
       </p>
       <div class="card-actions">
-      ${mbr.role === "member" && mbr.agent_id !== userId ? `<button type="button" class="danger btn delete-btn" style="background: #ff4444; color: white;">🗑 Remove</button>` : ""
+      ${mbr.role === "member" && mbr.agent_id !== userId ? `<button type="button" class="danger btn delete-btn">🗑 Remove</button>` : ""
       }
       </div>
     `;
