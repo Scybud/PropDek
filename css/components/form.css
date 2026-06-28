@@ -231,3 +231,9 @@ form a:hover { color: #87cfebb3; }
 input:disabled {
   opacity: 0.7;
 }
+
+.singleInput {
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: 1fr minmax(50px, 60px);
+}
